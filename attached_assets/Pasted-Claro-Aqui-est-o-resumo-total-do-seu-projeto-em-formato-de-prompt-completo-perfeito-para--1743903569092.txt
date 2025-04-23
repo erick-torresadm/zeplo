@@ -1,0 +1,104 @@
+Claro! Aqui está o **resumo total do seu projeto** em formato de **prompt completo**, perfeito para passar para um desenvolvedor, IA ou documentação de referência. Ele descreve claramente **o funcionamento do SaaS, os módulos existentes, o que está funcionando e o que precisa ser implementado**:
+
+---
+
+### ✅ **PROMPT RESUMO – SaaS de Automação WhatsApp com Fluxos por Palavra-chave**
+
+> Estou desenvolvendo um **SaaS de automação de WhatsApp**, com foco em **fluxos de mensagens automáticos ativados por palavras-chave**.  
+> 
+> A integração com o WhatsApp é feita via **Evolution API v2** e já está **100% funcional** no que diz respeito a:
+>
+> - Criar e conectar instâncias
+> - Obter status da instância
+> - Enviar e receber mensagens manuais
+>
+> ⚠️ **Importante: Não alterar nenhuma lógica relacionada à instância**, pois ela já está perfeita e funcionando como esperado.
+>
+> O problema atual é que o **SaaS não interpreta a chegada de mensagens contendo palavras-chave** e, por isso, **não está disparando os fluxos automaticamente**.
+>
+> A solução precisa ser implementada da seguinte forma:
+
+---
+
+### 🔧 **Lógica do Fluxo Automático (a ser implementada):**
+
+1. Escutar mensagens recebidas via webhook.
+2. Identificar qual instância recebeu a mensagem e, consequentemente, qual `user_id` está vinculado.
+3. Buscar no banco todas as `palavras-chave` cadastradas por esse usuário.
+4. Verificar se o texto recebido contém alguma dessas palavras.
+5. Se sim:
+   - Buscar o fluxo associado à palavra-chave.
+   - Disparar as mensagens definidas no fluxo (com delays entre elas).
+   - Salvar o log da automação (tipo: automática, data, número, fluxo_id).
+6. Evitar múltiplos disparos para uma mesma mensagem com várias palavras.
+
+---
+
+### 📦 **Estrutura de Fluxo no Banco (Exemplo JSON):**
+
+```json
+{
+  "id": "fluxo_01",
+  "user_id": "user_123",
+  "nome": "Fluxo de Boas-vindas",
+  "palavras_chave": ["quero comprar", "interesse", "olá"],
+  "ativo": true,
+  "mensagens": [
+    {
+      "tipo": "texto",
+      "conteudo": "Olá! 👋 Que bom ter você por aqui.",
+      "delay": 1000
+    },
+    {
+      "tipo": "texto",
+      "conteudo": "Vi que você demonstrou interesse em comprar nossos produtos.",
+      "delay": 1500
+    },
+    {
+      "tipo": "texto",
+      "conteudo": "Posso te ajudar com nossa lista de preços ou tirar dúvidas. Como prefere continuar?",
+      "delay": 2000
+    }
+  ]
+}
+```
+
+---
+
+### 🧠 **Requisitos Técnicos:**
+
+- Separar totalmente a lógica de fluxo automático da lógica de instância.
+- A automação só deve ocorrer **após a mensagem ser recebida com sucesso pela instância**.
+- A verificação de palavras-chave deve ser feita de forma **case-insensitive**.
+- As palavras devem poder conter mais de uma palavra (frases).
+- O sistema deve permitir múltiplas palavras por fluxo.
+- Somente **um fluxo deve ser disparado por mensagem** (a primeira palavra encontrada).
+- Deve haver **delay configurável** entre mensagens dentro do fluxo.
+
+---
+
+### 🧩 **Tabelas/Entidades Relevantes:**
+
+- `users`: ID, login
+- `instances`: ID, user_id, status, número
+- `flows`: ID, user_id, nome, mensagens[], ativo
+- `keywords`: ID, flow_id, palavra
+- `messages_log`: ID, número, fluxo_id, tipo (manual/automática), timestamp
+
+---
+
+### ✅ Resultado Esperado:
+
+Quando um usuário final envia uma mensagem no WhatsApp contendo uma palavra-chave previamente cadastrada no SaaS, o sistema deve automaticamente:
+
+1. Identificar a palavra-chave
+2. Disparar o fluxo correto
+3. Enviar todas as mensagens configuradas
+4. Respeitar os delays entre elas
+5. Registrar no log que aquele fluxo foi disparado automaticamente
+
+---
+
+Se quiser, posso agora montar um exemplo de código completo para essa função, ou o endpoint do webhook com isso tudo acoplado.
+
+Quer que eu siga com isso?

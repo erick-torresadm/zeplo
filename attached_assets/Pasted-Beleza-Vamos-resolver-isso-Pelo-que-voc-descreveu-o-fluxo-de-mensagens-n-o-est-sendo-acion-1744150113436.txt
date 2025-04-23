@@ -1,0 +1,105 @@
+Beleza! Vamos resolver isso.
+
+Pelo que você descreveu, o fluxo de mensagens **não está sendo acionado quando você envia a palavra-chave pelo WhatsApp**, ou seja:
+
+- Você envia a palavra-chave (ex: "promoção") pelo WhatsApp,
+- Mas **nada aparece na fila**, ou seja, o `FlowQueueService` nem fica sabendo.
+
+Então vamos seguir um check-list rápido pra debugar isso:
+
+---
+
+### ✅ 1. **Mensagem está chegando no backend?**
+
+Primeiro, o sistema precisa estar recebendo essa mensagem no webhook de entrada. Verifique se esse endpoint está ativo:
+
+```ts
+POST /api/webhooks/whatsapp
+```
+
+Ou o que estiver escutando as mensagens recebidas. Lá dentro, você precisa ver algo como:
+
+```ts
+const incomingMessage = req.body; // ou como for a estrutura recebida
+```
+
+Verifique se ele está logando algo ao receber a mensagem no console ou salvando no `messageHistory`.
+
+---
+
+### ✅ 2. **Está identificando a palavra-chave corretamente?**
+
+No backend, você deve ter alguma função parecida com:
+
+```ts
+function checkIfMessageMatchesFlow(messageText: string, flows: MessageFlow[]): MessageFlow | null
+```
+
+Ou uma lógica para comparar a mensagem recebida com a `keyword` do fluxo.
+
+**Verifique:**
+- O fluxo está com `status: 'active'`?
+- O tipo de trigger (`triggerType`) está correto?
+  - `exact_match`: tem que ser exatamente igual
+  - `contains`: pode estar dentro da frase
+  - `all_messages`: qualquer mensagem ativa dispara
+
+---
+
+### ✅ 3. **Se bateu com um fluxo, está chamando `FlowQueueService.addOrUpdateFlow()`?**
+
+Dentro da função que processa mensagens recebidas, você deveria ter algo assim:
+
+```ts
+const matchedFlow = checkIfMessageMatchesFlow(messageText, flows);
+if (matchedFlow) {
+  flowQueueService.addOrUpdateFlow({
+    flowId: matchedFlow.id,
+    flowName: matchedFlow.name,
+    instanceId: instance.id,
+    instanceName: instance.name,
+    recipientNumber: incomingMessage.sender,
+    recipientName: extractContactName(incomingMessage.sender),
+    triggerKeyword: matchedFlow.keyword,
+    triggerMessage: messageText
+  });
+}
+```
+
+Se isso **não** estiver acontecendo, o fluxo nunca será adicionado à fila.
+
+---
+
+### ✅ 4. **Confirme o tipo do `flow.messages` no banco**
+
+No seu schema:
+
+```ts
+messages: jsonb('messages').notNull(),
+```
+
+Se no banco ele estiver como `string`, mas no código está esperando `array`, o sistema pode nem considerar ele válido e pular.
+
+---
+
+### ✅ 5. **Olhe o status do fluxo**
+
+No banco de dados (`message_flows`), o campo `status` precisa estar `'active'`. Se tiver como `'inactive'`, ele não será considerado.
+
+---
+
+### ✅ 6. **Teste com `TestFlowTriggerDialog` funciona?**
+
+Se **testar via front-end funciona** e enviar pelo WhatsApp não, então o problema está 100% no **disparador automático no webhook ou listener de mensagem recebida**.
+
+---
+
+### Se quiser ajuda direta:
+
+Se puder colar aqui o trecho que **recebe a mensagem do WhatsApp** e **faz o match da keyword**, consigo te mostrar exatamente onde corrigir. Pode ser o handler de webhook, algo tipo:
+
+```ts
+app.post('/api/webhooks/whatsapp', async (req, res) => { ... })
+```
+
+Me mostra ele ou a função que processa mensagem recebida, que vamos afunilar isso agora rapidinho.

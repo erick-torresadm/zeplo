@@ -1,0 +1,151 @@
+Perfeito, vamos organizar isso com clareza e criar uma **estrutura bem definida para o seu SaaS de automação de WhatsApp**, com foco principal nos **fluxos automáticos de mensagens baseados em palavras-chave**, resolvendo o problema atual de **automatização redundante** e mal estruturada.
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Criar um SaaS de automação de WhatsApp focado em **fluxos de mensagens automáticos**, que se disparam automaticamente por palavras-chave digitadas pelo usuário final.
+
+---
+
+## 🧠 Diagnóstico do Problema Atual
+
+Você tem:
+
+1. Integração funcional com a instância WhatsApp via Evolution API v2.
+2. Envio manual de fluxos via botão (funciona corretamente).
+3. Tentativa de automação por palavras-chave (reconhecimento automático da mensagem e resposta com o fluxo).
+4. Problemas com a lógica do algoritmo, que está redundante ou ineficiente no Replit.
+
+---
+
+## 📐 Solução: Estrutura Ideal para o Sistema
+
+### 🔹 1. Estrutura Geral do Site (Frontend + Backend)
+
+#### 1.1 Telas (Frontend)
+
+- **Login / Cadastro**
+- **Dashboard**
+  - Conexão com a instância WhatsApp
+  - Estado da conexão (ativo/inativo)
+- **Gestão de Fluxos**
+  - Criar novo fluxo
+  - Lista de fluxos
+  - Editar fluxo
+  - Associar palavra-chave ao fluxo
+- **Logs de Mensagens**
+  - Histórico de disparos (manual e automático)
+  - Visualização por data/usuário/palavra-chave
+- **Mensagens Manuais**
+  - Enviar mensagem para um número
+  - Testar fluxo individual
+
+#### 1.2 Backend - Estrutura Lógica
+
+##### Tabelas (ou coleções, se for NoSQL):
+
+- **users**: login, senha, api_key
+- **instances**: id, user_id, status, número conectado
+- **flows**: id, user_id, nome, mensagens[], ativo
+- **keywords**: id, flow_id, palavra, ativo
+- **messages_log**: id, flow_id, número, mensagem, tipo (manual/automática), timestamp
+
+---
+
+### 🔹 2. Lógica de Funcionamento do Fluxo Automático
+
+#### 2.1 Trigger (evento de escuta)
+Você precisa de um **listener em tempo real** que:
+
+- Escute todas as mensagens recebidas pela instância conectada.
+- Leia o conteúdo da mensagem (ex: “quero comprar”).
+
+#### 2.2 Algoritmo Ideal para Identificação da Palavra-Chave
+
+```javascript
+async function handleIncomingMessage(msg) {
+  const userInstanceId = getInstanceFromMsg(msg);
+  const userId = await getUserByInstance(userInstanceId);
+
+  const textoRecebido = msg.body.toLowerCase().trim();
+  
+  const keywords = await getKeywordsByUser(userId); // retorna array de palavras-chave e seus fluxos
+
+  for (let keyword of keywords) {
+    if (textoRecebido.includes(keyword.palavra.toLowerCase())) {
+      const fluxo = await getFlowById(keyword.flow_id);
+      await enviarFluxoAutomatico(msg.from, fluxo);
+      await salvarLog(msg.from, fluxo.id, 'automática');
+      break; // Evita múltiplos disparos no mesmo texto
+    }
+  }
+}
+```
+
+**Explicação:**
+
+- A função escuta novas mensagens via webhook ou polling.
+- Conecta o número da mensagem à instância (usuário).
+- Consulta no banco todas as palavras-chave configuradas por esse usuário.
+- Verifica se a mensagem contém uma das palavras.
+- Dispara o fluxo associado à palavra-chave (sem redundância).
+- Salva o log da operação.
+
+#### 2.3 Envio do Fluxo
+
+```javascript
+async function enviarFluxoAutomatico(numero, fluxo) {
+  for (let msg of fluxo.mensagens) {
+    await enviarMensagem(numero, msg); // função que envia a mensagem via Evolution API
+    await delay(msg.delay || 1000); // suporta delay entre mensagens do fluxo
+  }
+}
+```
+
+---
+
+### 🔹 3. Prevenção de Redundância e Má Performance
+
+1. **Evitar múltiplas palavras-chave no mesmo texto ativando fluxos diferentes** (coloque `break`).
+2. **Normalização do texto** (case-insensitive, remover acentos se necessário).
+3. **Delay entre mensagens** para simular conversação natural.
+4. **Logs** com identificação de tipo (manual vs automática).
+5. **Criação de cache simples (em memória)** para keywords por instância com TTL.
+
+---
+
+## 🔄 Ciclo do Fluxo
+
+1. Usuário final envia mensagem.
+2. Listener detecta nova mensagem.
+3. Identifica o número da instância.
+4. Busca as palavras-chave vinculadas àquele usuário.
+5. Encontra a palavra no texto.
+6. Dispara o fluxo correspondente.
+7. Salva log da automação.
+
+---
+
+## 🧪 Sugestão de Testes
+
+- Enviar mensagens com várias palavras-chaves -> deve disparar apenas uma.
+- Enviar uma palavra-chave duas vezes seguidas -> só dispara se configurado com cooldown.
+- Testar palavras com acento e sem acento.
+- Ver logs de envio e tipo (manual / automático).
+
+---
+
+## 🛠️ Próximos Passos
+
+1. Refatorar a lógica atual de escuta do webhook.
+2. Criar endpoint dedicado `POST /mensagem-recebida` (caso ainda não tenha).
+3. Implementar lógica acima no backend.
+4. Testar 3 fluxos com palavras diferentes.
+5. Integrar na interface de criação de fluxo a parte de **palavra-chave** obrigatória.
+
+---
+
+Se quiser, posso montar contigo o código da função `handleIncomingMessage` ou te ajudar a estruturar o banco.
+
+Quer seguir por esse caminho agora?

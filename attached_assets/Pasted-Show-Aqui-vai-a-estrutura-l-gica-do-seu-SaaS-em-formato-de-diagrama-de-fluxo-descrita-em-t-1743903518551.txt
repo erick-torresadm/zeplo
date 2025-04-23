@@ -1,0 +1,126 @@
+Show! Aqui vai a **estrutura lógica do seu SaaS** em formato de **diagrama de fluxo** (descrita em texto, pronta pra virar um desenho visual também). Essa versão respeita 100% a lógica atual da instância e **adiciona apenas o módulo de verificação de palavra-chave e disparo automático de fluxo.**
+
+---
+
+# 🧭 Diagrama Lógico do SaaS de Automação WhatsApp
+
+---
+
+### 📦 1. Módulo de Instância (já existente – **não alterar**)
+
+```text
+[Usuário se conecta à instância WhatsApp]
+        |
+        V
+[Instância é criada e vinculada ao número]
+        |
+        V
+[API Evolution retorna status: CONECTADO]
+        |
+        V
+[Instância ativa e pronta para envio/recebimento]
+```
+
+✅ **Observação**: Essa parte está funcionando e deve ser mantida como está.
+
+---
+
+### 🔁 2. Módulo de Recebimento de Mensagens
+
+```text
+[Usuário final envia mensagem via WhatsApp]
+        |
+        V
+[SaaS recebe mensagem no webhook (listener)]
+        |
+        V
+[Extrai número do remetente e conteúdo da mensagem]
+        |
+        V
+[Identifica a instância pelo número recebido]
+        |
+        V
+[Obtém o user_id vinculado àquela instância]
+```
+
+---
+
+### 🔍 3. Módulo de Verificação de Palavra-Chave
+
+```text
+        |
+        V
+[Consulta no banco as palavras-chave do user_id]
+        |
+        V
+[Verifica se o texto recebido contém alguma das palavras]
+        |
+       / \
+     SIM   NÃO
+     /       \
+[Vincula      [Ignora mensagem ou registra log neutro]
+ fluxo]             
+     |
+     V
+```
+
+---
+
+### 🚀 4. Disparo Automático do Fluxo
+
+```text
+[Busca o fluxo vinculado à palavra-chave]
+        |
+        V
+[Envia mensagens do fluxo para o número do remetente]
+        |
+        V
+[Registra log do envio (tipo: automático, data, fluxo_id, número)]
+```
+
+---
+
+## 🧩 Resumo da Arquitetura Modular
+
+```text
+┌──────────────────────────────────┐
+│          FRONTEND (SaaS)        │
+│ - Cadastro de fluxos            │
+│ - Cadastro de palavras-chave    │
+│ - Status da instância           │
+└──────────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────┐
+│         BACKEND API             │
+│ - Webhook de mensagens           │◄─── Recebe msg do WhatsApp
+│ - Identificação de usuário       │
+│ - Verificação de palavra-chave  │
+│ - Disparo do fluxo automático   │
+│ - Registro de logs              │
+└──────────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────┐
+│         BANCO DE DADOS          │
+│ - Tabela users                  │
+│ - Tabela instances              │
+│ - Tabela flows                  │
+│ - Tabela keywords               │
+│ - Tabela logs                   │
+└──────────────────────────────────┘
+```
+
+---
+
+### ✅ Benefícios dessa Arquitetura
+
+- **Isola totalmente** a lógica de fluxo automático da lógica da instância.
+- **Modular e escalável**: pode criar múltiplas palavras para um mesmo fluxo ou múltiplos fluxos por usuário.
+- **Facilidade para manutenção**: toda a parte de automação está separada e clara.
+
+---
+
+Se quiser, posso montar também um JSON de exemplo de fluxo com mensagens e palavra-chave, para você usar nos testes ou importar no sistema.
+
+Quer?

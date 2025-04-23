@@ -1,0 +1,99 @@
+Perfeito, agora estamos chegando lá! 👇 Bora fazer esse fluxo disparar certinho quando alguém enviar uma palavra-chave.
+
+---
+
+### ✅ RESUMO DO OBJETIVO
+
+> Quando alguém enviar uma **mensagem com uma palavra-chave** para o número da **instância**, o sistema deve **identificar a palavra-chave** e **iniciar automaticamente o fluxo correspondente**.
+
+---
+
+### ✅ CHECKLIST DO QUE PRECISA ESTAR CERTO
+
+1. **A palavra-chave está cadastrada no banco de dados** junto com o ID do fluxo e o ID da instância?
+2. A função `processFlowsForInstance` está buscando essa palavra e executando o fluxo?
+3. O `sendToWebhook()` está sendo chamado com os dados corretos para iniciar o fluxo?
+
+---
+
+### 🚀 EXEMPLO DE FLUXO AUTOMÁTICO (Fluxo Básico)
+
+Vou te mostrar agora uma função `processFlowsForInstance` funcional pra isso:
+
+```ts
+import { startFlow } from "./startFlow"; // Função que inicia o fluxo
+import { getFlowByKeyword } from "./db"; // Busca fluxo no banco
+
+export async function processFlowsForInstance(instance, phoneNumber, messageText, sendToWebhook) {
+  // Limpa o texto da mensagem
+  const keyword = messageText.trim().toLowerCase();
+
+  // Busca o fluxo com essa palavra-chave na instância
+  const flow = await getFlowByKeyword(instance.id, keyword);
+
+  if (!flow) {
+    console.log(`Nenhum fluxo encontrado para a palavra-chave "${keyword}" na instância ${instance.name}`);
+    return;
+  }
+
+  // Inicia o fluxo encontrado
+  console.log(`Iniciando fluxo "${flow.name}" para ${phoneNumber}`);
+  await startFlow(flow, phoneNumber, sendToWebhook);
+}
+```
+
+---
+
+### 🧠 O QUE `getFlowByKeyword` DEVE FAZER?
+
+```ts
+export async function getFlowByKeyword(instanceId, keyword) {
+  return await db.flows.findFirst({
+    where: {
+      instanceId: instanceId,
+      keyword: keyword
+    }
+  });
+}
+```
+
+---
+
+### 💥 Função `startFlow`
+
+Aqui é onde você dispara o webhook para enviar a primeira mensagem do fluxo:
+
+```ts
+export async function startFlow(flow, phoneNumber, sendToWebhook) {
+  const steps = JSON.parse(flow.steps);
+
+  if (!steps.length) return;
+
+  // Envia a primeira etapa do fluxo
+  const firstMessage = steps[0];
+
+  await sendToWebhook({
+    phone: phoneNumber,
+    message: firstMessage.message,
+    flowId: flow.id,
+    step: 0
+  });
+}
+```
+
+---
+
+### ✅ Agora o fluxo será iniciado quando:
+
+- A **mensagem chegar**,
+- A **palavra bater com alguma cadastrada**,
+- E a **primeira mensagem for disparada** automaticamente.
+
+---
+
+Se quiser, me mostra:
+- Como está sua função `processFlowsForInstance` atual,
+- Como você cadastrou os fluxos no banco (tabela, campos etc),
+- E se tem algo personalizado que posso adaptar no código.
+
+Tô contigo até funcionar 100%. Bora! 🔧💬

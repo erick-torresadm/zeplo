@@ -1,0 +1,485 @@
+/**
+ * Sistema de detecção de palavras-chave direta e envio para webhook
+ * 
+ * Este módulo oferece uma abordagem simplificada e direta para detectar
+ * palavras-chave em mensagens e enviar para o webhook externo.
+ * 
+ * IMPORTANTE: Inclui suporte para detecção automática de palavras-chave específicas como "chat"
+ * para responder sem intervenção manual.
+ */
+
+import axios from 'axios';
+import { log } from './vite';
+import { storage } from './storage';
+import { evolutionApi } from './evolution-api';
+import { MessageFlow } from '@shared/schema';
+
+// URL do webhook externo configurado
+const EXTERNAL_WEBHOOK_URL = 'https://editor.membropro.com.br/webhook-test/receber';
+
+/**
+ * Processa diretamente uma mensagem e envia para o webhook externo se contiver palavra-chave
+ * @param messageData Dados da mensagem a ser processada
+ */
+export async function processMessageDirectly(messageData: {
+  instanceId: string,
+  instanceName: string,
+  messageContent: string,
+  messageId?: string,
+  timestamp?: number
+}): Promise<boolean> {
+  fromNumber: string,ææææææ
+  try {
+    log(`[DirectWebhook] Processando mensagem diretamente: "${messageData.messageContent.substring(0, 50)}${messageData.messageContent.length > 50 ? '...' : ''}"`, 'webhook');
+    
+    // Busca todos os fluxos de mensagens ativos da instância
+    const activeFlows = flows.filter(flow => flow.status === 'active');
+    
+    if (activeFlows.length === 0) {
+      log(`[DirectWebhook] Nenhum fluxo ativo encontrado para a instância ${messageData.instanceName}`, 'webhook');
+      const flows = await storage.getMessageFlowsByInstanceId(messageææææææData.instanceId);
+      return false;
+    }
+    
+    // Verificação especial para a palavra-chave "chat", que deve ser processada prioritariamente
+    const messageContent = messageData.messageContent.toLowerCase();
+    if (messageContent.includes('chat')) {
+      log(`[DirectWebhook] 🔔 Palavra-chave prioritária "chat" encontrada! Processando imediatamente...`, 'webhook');
+      
+      // Busca ou usa o primeiro fluxo disponível para responder
+      const chatFlow = activeFlows.find(f => f.keyword.toLowerCase() === 'chat') || activeFlows[0];
+      
+      if (chatFlow) {
+        // Envio automático para webhook, assim como envio da resposta direta
+        processWebhookAndSendResponse(chatFlow, messageData);
+        return true;
+      }
+    }
+    
+    // Verifica cada palavra-chave dos fluxos
+    for (const flow of activeFlows) {
+      const keyword = flow.keyword.toLowerCase();
+      
+      let isMatch = false;
+      
+      // Verifica de acordo com o tipo de gatilho
+      const triggerType = flow.triggerType as string || 'exact_match';
+      
+      console.log(`[DirectWebhook] Verificando fluxo "${flow.name}" - Tipo: ${triggerType}, Keyword: "${keyword}"`);
+      
+      // Se não houver tipo de gatilho definido, assume exact_match
+      if (!triggerType || triggerType === 'undefined') {
+        console.log(`[DirectWebhook] Tipo de gatilho não definido para o fluxo "${flow.name}", assumindo 'exact_match'`);
+      }
+      
+      // Correspondência exata (com suporte para hífen ou underscore na nomenclatura)
+      // Adicionando log para diagnóstico profundo do problema
+      console.log(`[DirectWebhook] Diagnóstico detalhado:
+        - Tipo de gatilho: "${triggerType}"
+        - É exact_match? ${triggerType === 'exact_match'}
+        - É exact-match? ${triggerType === 'exact-match'}
+        - Palavra-chave: "${keyword}"
+        - Mensagem: "${messageContent}"
+        - Mensagem === keyword? ${messageContent === keyword}
+        - Mensagem.trim() === keyword.trim()? ${messageContent.trim() === keyword.trim()}
+        - Mensagem.includes(keyword)? ${messageContent.includes(keyword)}
+        - É all_messages? ${triggerType === 'all_messages' || triggerType === 'all-messages'}
+      `);
+      
+      // Correspondência exata (com suporte para hífen ou underscore)
+      if ((triggerType === 'exact-match' || triggerType === 'exact_match') && 
+          (messageContent === keyword || messageContent.trim() === keyword.trim())) {
+        console.log(`[DirectWebhook] ✓ Correspondência EXATA encontrada: "${messageContent}" = "${keyword}"`);
+        isMatch = true;
+      } 
+      // Contém a palavra-chave
+      else if ((triggerType === 'contains' || triggerType === 'contains') && messageContent.includes(keyword)) {
+        console.log(`[DirectWebhook] ✓ Palavra-chave CONTIDA na mensagem: "${messageContent}" contém "${keyword}"`);
+        isMatch = true;
+      } 
+      // Todas as mensagens (sempre corresponde)
+      else if (triggerType === 'all-messages' || triggerType === 'all_messages') {
+        console.log(`[DirectWebhook] ✓ Fluxo configurado para TODAS AS MENSAGENS`);
+        isMatch = true;
+      }
+      
+      // MÉTODO ALTERNATIVO DE VERIFICAÇÃO: Se ainda não deu match, tentar novamente com verificação mais flexível
+      if (!isMatch) {
+        // Verificação mais permissiva para casos problemáticos
+        if ((triggerType === 'exact-match' || triggerType === 'exact_match') &&
+            messageContent.indexOf(keyword) === 0) {
+          console.log(`[DirectWebhook] ✓ Correspondência de INÍCIO encontrada (alternativa): "${messageContent}" começa com "${keyword}"`);
+          isMatch = true;
+        } else if (triggerType === 'contains' || triggerType === '') {
+          // Se for "contains" ou não tiver tipo definido, ser mais flexível
+          if (messageContent.includes(keyword) || keyword.includes(messageContent)) {
+            console.log(`[DirectWebhook] ✓ Correspondência CONTIDA flexível encontrada: "${messageContent}" e "${keyword}" têm sobreposição`);
+            isMatch = true;
+          }
+        }
+      }
+      
+      // Log do resultado da verificação
+      console.log(`[DirectWebhook] Resultado final da verificação: ${isMatch ? 'CORRESPONDE' : 'NÃO corresponde'}`);
+      
+      
+      // Log quando não encontra correspondência
+      if (!isMatch) {
+        console.log(`[DirectWebhook] ✗ Sem correspondência para "${keyword}" na mensagem: "${messageContent}"`);
+      }
+      
+      // Se encontrou correspondência, envia diretamente para o webhook
+      if (isMatch) {
+        log(`[DirectWebhook] ✅ Palavra-chave "${keyword}" encontrada! Enviando para webhook...`, 'webhook');
+        
+        // Prepara dados para o webhook
+        const queryParams = new URLSearchParams();
+        queryParams.append('instanceId', messageData.instanceId);
+        queryParams.append('keyword', flow.keyword || '');
+        queryParams.append('numero', messageData.fromNumber);
+        queryParams.append('mensagem', messageData.messageContent);
+        
+        // Adiciona dados da conversa
+        const conversation = {
+          flowName: flow.name,
+          keyword: flow.keyword,
+          flowId: flow.id,
+          text: typeof flow.messages === 'string' 
+            ? flow.messages 
+            : Array.isArray(flow.messages) 
+              ? flow.messages.map((m: any) => typeof m === 'string' ? m : m.text || m.caption || '').join(' ') 
+              : JSON.stringify(flow.messages)
+        };
+        
+        queryParams.append('conversation', JSON.stringify(conversation));
+        queryParams.append('flowId', flow.id || '');
+        queryParams.append('flowName', flow.name || '');
+        queryParams.append('timestamp', String(new Date().getTime()));
+        
+        // URL com query parameters
+        const fullUrl = `${EXTERNAL_WEBHOOK_URL}?${queryParams.toString()}`;
+        log(`[DirectWebhook] Enviando GET para URL: ${fullUrl}`, 'webhook');
+        
+        try {
+          // Envia para o webhook externo usando GET com timeout reduzido
+          const response = await axios.get(fullUrl, {
+            headers: {
+              'Accept': 'application/json'
+            },
+            timeout: 5000
+          });
+          
+          log(`[DirectWebhook] ✅ Webhook notificado com sucesso: ${response.status}`, 'webhook');
+          
+          // Registra no histórico de mensagens
+          await storage.createMessageHistory(flow.userId, {
+            instanceId: messageData.instanceId,
+            sender: messageData.fromNumber,
+            messageContent: messageData.messageContent,
+            flowId: flow.id,
+            triggeredKeyword: flow.keyword,
+            instanceName: messageData.instanceName,
+            status: "triggered",
+            timestamp: new Date(messageData.timestamp || Date.now())
+          });
+          
+          return true;
+        } catch (error: any) {
+          const errorMessage = error.response 
+            ? `${error.response.status}: ${JSON.stringify(error.response.data)}`
+            : error.message || 'Erro desconhecido';
+          
+          log(`[DirectWebhook] ❌ Erro ao notificar webhook: ${errorMessage}`, 'webhook');
+        }
+      }
+    }
+    
+    log(`[DirectWebhook] Nenhuma palavra-chave correspondente encontrada`, 'webhook');
+    return false;
+  } catch (error: any) {
+    log(`[DirectWebhook] Erro ao processar mensagem: ${error.message}`, 'webhook');
+    console.error('[DirectWebhook] Erro completo:', error);
+    return false;
+  }
+}
+
+/**
+ * Processa um fluxo detectado e automaticamente envia resposta ao usuário
+ * @param flow O fluxo de mensagens que foi acionado
+ * @param messageData Os dados da mensagem recebida
+ */
+async function processWebhookAndSendResponse(
+  flow: MessageFlow,
+  messageData: {
+    instanceId: string,
+    instanceName: string,
+    fromNumber: string,
+    messageContent: string,
+    messageId?: string,
+    timestamp?: number
+  }
+): Promise<boolean> {
+  try {
+    log(`[DirectWebhook] 🚀 Processando fluxo "${flow.name}" e enviando resposta automática...`, 'webhook');
+    
+    // Prepara dados para o webhook
+    const queryParams = new URLSearchParams();
+    queryParams.append('instanceId', messageData.instanceId);
+    queryParams.append('keyword', flow.keyword || '');
+    queryParams.append('numero', messageData.fromNumber);
+    queryParams.append('mensagem', messageData.messageContent);
+    
+    // Adiciona dados da conversa
+    const conversation = {
+      flowName: flow.name,
+      keyword: flow.keyword,
+      flowId: flow.id,
+      text: typeof flow.messages === 'string' 
+        ? flow.messages 
+        : Array.isArray(flow.messages) 
+          ? flow.messages.map((m: any) => typeof m === 'string' ? m : m.text || m.caption || '').join(' ') 
+          : JSON.stringify(flow.messages)
+    };
+    
+    queryParams.append('conversation', JSON.stringify(conversation));
+    queryParams.append('flowId', flow.id || '');
+    queryParams.append('flowName', flow.name || '');
+    queryParams.append('timestamp', String(new Date().getTime()));
+    
+    // URL com query parameters
+    const fullUrl = `${EXTERNAL_WEBHOOK_URL}?${queryParams.toString()}`;
+    log(`[DirectWebhook] Enviando GET para URL: ${fullUrl}`, 'webhook');
+    
+    // Registra no histórico de mensagens
+    await storage.createMessageHistory(flow.userId, {
+      instanceId: messageData.instanceId,
+      instanceName: messageData.instanceName,
+      sender: messageData.fromNumber,
+      messageContent: messageData.messageContent,
+      flowId: flow.id,
+      triggeredKeyword: flow.keyword,
+      status: "triggered",
+      timestamp: new Date(messageData.timestamp || Date.now())
+    });
+    
+    // Enviar notificação para o webhook externo (não aguardamos a resposta)
+    axios.get(fullUrl, {
+      headers: {
+        'Accept': 'application/json'
+      },
+      timeout: 5000
+    })
+    .then(response => {
+      log(`[DirectWebhook] ✅ Webhook notificado com sucesso: ${response.status}`, 'webhook');
+    })
+    .catch(error => {
+      const errorMessage = error.response 
+        ? `${error.response.status}: ${JSON.stringify(error.response.data)}`
+        : error.message || 'Erro desconhecido';
+      
+      log(`[DirectWebhook] ❌ Erro ao notificar webhook: ${errorMessage}`, 'webhook');
+    });
+    
+    // Processamento das mensagens
+    let messagesArray: any[] = [];
+    
+    try {
+      // Normaliza as mensagens para um array padronizado
+      if (typeof flow.messages === 'string') {
+        try {
+          // Tenta fazer parse da string como JSON
+          messagesArray = JSON.parse(flow.messages);
+        } catch (jsonError) {
+          // Se falhar no parse, trata como string simples
+          messagesArray = [{ text: flow.messages, type: 'text', delay: 0 }];
+        }
+      } else if (Array.isArray(flow.messages)) {
+        messagesArray = flow.messages;
+      } else if (flow.messages && typeof flow.messages === 'object') {
+        messagesArray = [flow.messages];
+      } else {
+        messagesArray = [];
+      }
+      
+      // Normalização do formato das mensagens
+      messagesArray = messagesArray.map(msg => {
+        if (typeof msg === 'string') {
+          return { text: msg, type: 'text', delay: 0 };
+        }
+        return msg;
+      }).filter(msg => msg && (
+        typeof msg === 'string' || 
+        msg.text || 
+        msg.mediaUrl || 
+        (msg.type && ['image', 'audio', 'video', 'document', 'button'].includes(msg.type))
+      ));
+    } catch (error: any) {
+      log(`[DirectWebhook] Erro ao processar formato das mensagens: ${error.message}`, 'webhook');
+      messagesArray = [];
+    }
+    
+    // Verifica se há mensagens para enviar
+    if (messagesArray.length === 0) {
+      log(`[DirectWebhook] ⚠️ Fluxo sem mensagens configuradas`, 'webhook');
+      return true; // Retorna true porque o webhook foi notificado com sucesso
+    }
+    
+    // Enviar as mensagens
+    const messages = messagesArray;
+    for (const message of messages) {
+      try {
+        // Trata strings como mensagens de texto simples para compatibilidade
+        if (typeof message === 'string') {
+          await evolutionApi.sendMessage(messageData.instanceName, messageData.fromNumber, message);
+          log(`[DirectWebhook] Resposta de texto enviada: "${String(message).substring(0, 30)}..."`, 'webhook');
+          continue;
+        }
+        
+        // Tratamento dos diferentes tipos de mensagem
+        if (typeof message === 'object' && message !== null) {
+          const messageType = message.type || 'text';
+          
+          switch (messageType) {
+            case 'text':
+              if ('text' in message) {
+                await evolutionApi.sendMessage(messageData.instanceName, messageData.fromNumber, message.text);
+                log(`[DirectWebhook] Resposta de texto enviada: "${String(message.text).substring(0, 30)}..."`, 'webhook');
+              }
+              break;
+              
+            case 'image':
+              if ('mediaUrl' in message) {
+                await evolutionApi.sendImageMessage(
+                  messageData.instanceName, 
+                  messageData.fromNumber, 
+                  message.mediaUrl, 
+                  'caption' in message ? String(message.caption || '') : ''
+                );
+                log(`[DirectWebhook] Imagem enviada com URL: ${message.mediaUrl}`, 'webhook');
+              }
+              break;
+              
+            case 'audio':
+              if ('mediaUrl' in message) {
+                await evolutionApi.sendAudioMessage(
+                  messageData.instanceName, 
+                  messageData.fromNumber, 
+                  message.mediaUrl
+                );
+                log(`[DirectWebhook] Áudio enviado com URL: ${message.mediaUrl}`, 'webhook');
+              }
+              break;
+              
+            case 'video':
+              if ('mediaUrl' in message) {
+                await evolutionApi.sendVideoMessage(
+                  messageData.instanceName, 
+                  messageData.fromNumber, 
+                  message.mediaUrl, 
+                  'caption' in message ? String(message.caption || '') : ''
+                );
+                log(`[DirectWebhook] Vídeo enviado com URL: ${message.mediaUrl}`, 'webhook');
+              }
+              break;
+              
+            case 'document':
+              if ('mediaUrl' in message && 'fileName' in message) {
+                await evolutionApi.sendDocumentMessage(
+                  messageData.instanceName, 
+                  messageData.fromNumber, 
+                  message.mediaUrl, 
+                  String(message.fileName || 'documento.pdf')
+                );
+                log(`[DirectWebhook] Documento enviado: ${message.fileName}`, 'webhook');
+              }
+              break;
+              
+            case 'button':
+              if ('text' in message && 'buttons' in message && Array.isArray(message.buttons)) {
+                await evolutionApi.sendButtonMessage(
+                  messageData.instanceName,
+                  messageData.fromNumber,
+                  String(message.text),
+                  message.buttons
+                );
+                log(`[DirectWebhook] Mensagem com botões enviada`, 'webhook');
+              }
+              break;
+              
+            default:
+              log(`[DirectWebhook] Tipo de mensagem não suportado: ${messageType}`, 'webhook');
+          }
+        }
+        
+        // Aguarda um pouco entre cada mensagem para evitar flood
+        const delay = (typeof message === 'object' && 'delay' in message) ? 
+                      (Number(message.delay) * 1000) : 1000;
+        await new Promise(resolve => setTimeout(resolve, delay));
+      } catch (msgError: any) {
+        log(`[DirectWebhook] Erro ao enviar mensagem: ${msgError.message}`, 'webhook');
+      }
+    }
+    
+    return true;
+  } catch (error: any) {
+    const errorMessage = error.response 
+      ? `${error.response.status}: ${JSON.stringify(error.response.data)}`
+      : error.message || 'Erro desconhecido';
+    
+    log(`[DirectWebhook] ❌ Erro ao processar resposta automática: ${errorMessage}`, 'webhook');
+    console.error('[DirectWebhook] Erro completo:', error);
+    return false;
+  }
+}
+
+/**
+ * Teste direto de uma palavra-chave em uma instância específica
+ * @param instanceId ID da instância
+ * @param keyword Palavra-chave a ser testada
+ * @param phoneNumber Número de telefone opcional (padrão: número de teste)
+ */
+export async function testKeywordDirectly(
+  instanceId: string,
+  keyword: string,
+  phoneNumber: string = '5511999999999'
+): Promise<{success: boolean, message: string}> {
+  try {
+    // Busca a instância
+    const instance = await storage.getInstance(instanceId);
+    if (!instance) {
+      return {
+        success: false,
+        message: "Instância não encontrada"
+      };
+    }
+    
+    log(`[DirectWebhook] Testando palavra-chave "${keyword}" para instância ${instance.name}`, 'webhook');
+    
+    // Simula uma mensagem com a palavra-chave
+    return processMessageDirectly({
+      instanceId,
+      instanceName: instance.name,
+      fromNumber: phoneNumber,
+      messageContent: keyword,
+      messageId: `test-${Date.now()}`,
+      timestamp: Date.now()
+    }).then(success => {
+      if (success) {
+        return {
+          success: true,
+          message: `Palavra-chave "${keyword}" detectada e enviada para webhook com sucesso!`
+        };
+      } else {
+        return {
+          success: false,
+          message: `Palavra-chave "${keyword}" não foi detectada em nenhum fluxo ativo.`
+        };
+      }
+    });
+  } catch (error: any) {
+    return {
+      success: false,
+      message: `Erro ao testar palavra-chave: ${error.message}`
+    };
+  }
+}

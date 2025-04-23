@@ -1,0 +1,77 @@
+Perfeito! Aqui vai um **exemplo de estrutura JSON** de um fluxo, incluindo:
+
+- Nome do fluxo
+- Palavra-chave associada
+- Lista de mensagens a serem enviadas
+- Opção de delay entre mensagens
+
+Esse JSON pode ser usado no banco de dados ou como modelo para importar/exportar fluxos no seu SaaS.
+
+---
+
+## 🧾 Exemplo de JSON de Fluxo com Palavra-chave
+
+```json
+{
+  "id": "fluxo_01",
+  "user_id": "user_123",
+  "nome": "Fluxo de Boas-vindas",
+  "palavras_chave": ["quero comprar", "interesse", "olá"],
+  "ativo": true,
+  "mensagens": [
+    {
+      "tipo": "texto",
+      "conteudo": "Olá! 👋 Que bom ter você por aqui.",
+      "delay": 1000
+    },
+    {
+      "tipo": "texto",
+      "conteudo": "Vi que você demonstrou interesse em comprar nossos produtos.",
+      "delay": 1500
+    },
+    {
+      "tipo": "texto",
+      "conteudo": "Posso te ajudar com nossa lista de preços ou tirar dúvidas. Como prefere continuar?",
+      "delay": 2000
+    }
+  ]
+}
+```
+
+---
+
+### 🧩 Explicação do JSON
+
+| Campo             | Descrição                                                                 |
+|------------------|---------------------------------------------------------------------------|
+| `id`             | Identificador único do fluxo                                              |
+| `user_id`        | Dono do fluxo (vinculado à instância)                                     |
+| `nome`           | Nome amigável do fluxo                                                    |
+| `palavras_chave` | Array com todas as palavras que ativam esse fluxo                         |
+| `ativo`          | Define se o fluxo pode ser disparado automaticamente                      |
+| `mensagens`      | Lista de mensagens sequenciais a serem enviadas                           |
+| `delay`          | Tempo de espera (ms) entre uma mensagem e outra                           |
+
+---
+
+### 📤 Como esse JSON é usado no backend
+
+Na hora que o texto recebido do usuário final for analisado, o backend vai:
+
+1. Consultar as `palavras_chave` de todos os fluxos do `user_id`.
+2. Verificar se o texto da mensagem contém alguma palavra.
+3. Se sim, pegar o fluxo correspondente e disparar as mensagens da lista `mensagens` com o delay definido.
+
+---
+
+### ➕ Variações possíveis
+
+Você pode expandir o JSON para incluir:
+
+- **mensagens com imagens** (campo `tipo: imagem`, `url`)
+- **respostas com botões** (usando templates ou marcações)
+- **condições futuras** (ex: se respondeu "1", envia outro fluxo)
+
+Posso montar um exemplo avançado com botões ou imagem se quiser seguir nessa direção.
+
+Quer um desses também?

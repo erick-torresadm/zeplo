@@ -1,0 +1,219 @@
+Planejamento do SaaS de Fluxos de Mensagens no WhatsApp (Evolution API v2)
+Visão Geral
+Este SaaS permitirá que os usuários criem fluxos automatizados de mensagens no WhatsApp com base em palavras-chave. O sistema se conectará à Evolution API v2 para gerenciar instâncias de WhatsApp e enviará mensagens com intervalos configuráveis. O dashboard permitirá aos usuários configurar suas instâncias e criar fluxos personalizados.
+
+1. Arquitetura do Sistema
+1.1. Tecnologias e Estrutura
+Frontend: Dashboard para gerenciamento das instâncias e fluxos de mensagens.
+
+Backend: API intermediária para comunicação com a Evolution API e banco de dados.
+
+Banco de Dados: Armazena informações sobre instâncias registradas por cada usuário e os fluxos de mensagens.
+
+Webhooks/Polling: Para monitoramento de mensagens recebidas e execução dos fluxos.
+
+1.2. Fluxo Geral do Usuário
+Usuário se cadastra/loga no sistema.
+
+Conecta-se à Evolution API criando uma nova instância de WhatsApp.
+
+Configura palavras-chave e mensagens automáticas no fluxo de mensagens.
+
+Ao receber uma mensagem com a palavra-chave, o sistema responde automaticamente.
+
+Logs e relatórios são armazenados e exibidos no dashboard.
+
+2. Funcionalidades e Telas
+2.1. Tela de Conexão WhatsApp
+Objetivo:
+Permitir que o usuário registre e gerencie sua instância do WhatsApp na Evolution API.
+
+Funcionalidades:
+Listagem das instâncias criadas pelo usuário (busca via API).
+
+Botão “Nova Conexão” para criar uma nova instância.
+
+Exibição do QR Code para conectar o WhatsApp.
+
+Status da conexão (Online, Offline, Desconectado).
+
+Fluxo da Tela:
+O sistema busca somente as instâncias do usuário logado na Evolution API.
+
+O usuário pode clicar em “Nova Conexão” e fornecer um nome.
+
+O sistema faz uma requisição para criar uma instância e retorna os dados.
+
+O usuário escaneia o QR Code e o sistema atualiza o status da instância.
+
+Se a conexão for bem-sucedida, a instância fica disponível para configuração de fluxos.
+
+Endpoints Utilizados:
+Criar instância:
+
+bash
+Copiar
+Editar
+curl --request POST \
+  --url https://api.membropro.com.br/instance/create \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: SEU_API_KEY' \
+  --data '{
+    "instanceName": "nomedoinstancia",
+    "integration": "WHATSAPP-BAILEYS"
+  }'
+Buscar instâncias do usuário:
+
+bash
+Copiar
+Editar
+curl --request GET \
+  --url 'https://api.membropro.com.br/instance/fetchInstances?instanceName=nomedoinstancia' \
+  --header 'apikey: SEU_API_KEY'
+Conectar instância (QR Code em Base64):
+
+bash
+Copiar
+Editar
+curl --request GET \
+  --url https://api.membropro.com.br/instance/connect/nomedoinstancia \
+  --header 'apikey: SEU_API_KEY'
+2.2. Tela de Criação de Fluxos de Mensagens
+Objetivo:
+Permitir que os usuários configurem palavras-chave e as mensagens automáticas que serão enviadas.
+
+Funcionalidades:
+Definir palavra-chave que ativará o fluxo.
+
+Criar sequência de mensagens (exemplo: Mensagem 1 → Espera 5s → Mensagem 2).
+
+Escolher a instância do WhatsApp associada ao fluxo.
+
+Ativar/desativar fluxo.
+
+Fluxo da Tela:
+O usuário escolhe uma instância ativa.
+
+Insere a palavra-chave que ativará o fluxo.
+
+Adiciona mensagens com tempos entre elas.
+
+Salva e ativa o fluxo.
+
+Exemplo de Configuração de Fluxo:
+Palavra-chave: "Promoção"
+
+Mensagem 1: "Olá! Temos uma promoção especial para você." (Enviada imediatamente)
+
+Tempo: 5 segundos
+
+Mensagem 2: "Use o cupom DESCONTO10 para ganhar 10% de desconto!"
+
+Estrutura no Banco de Dados:
+json
+Copiar
+Editar
+{
+  "id": "fluxo_001",
+  "user_id": "usuario_123",
+  "instance_id": "e246c9c5-8520-4ff1-aa2d-2dc2b70d9d45",
+  "keyword": "Promoção",
+  "messages": [
+    {
+      "text": "Olá! Temos uma promoção especial para você.",
+      "delay": 0
+    },
+    {
+      "text": "Use o cupom DESCONTO10 para ganhar 10% de desconto!",
+      "delay": 5
+    }
+  ],
+  "status": "active"
+}
+2.3. Monitoramento e Execução dos Fluxos
+Objetivo:
+Detectar mensagens recebidas e responder automaticamente.
+
+Funcionamento:
+O sistema consulta periodicamente as mensagens recebidas.
+
+Se houver uma correspondência com uma palavra-chave, o fluxo é ativado.
+
+As mensagens são enviadas na ordem definida, respeitando os tempos configurados.
+
+Implementação do Polling (Consultando mensagens recebidas):
+bash
+Copiar
+Editar
+curl --request GET \
+  --url 'https://api.membropro.com.br/instance/messages?instanceId=INSTANCE_ID' \
+  --header 'apikey: SEU_API_KEY'
+Resposta esperada:
+
+json
+Copiar
+Editar
+[
+  {
+    "messageId": "msg_001",
+    "from": "5511999999999",
+    "message": "Promoção"
+  }
+]
+Caso uma mensagem contenha uma palavra-chave configurada, o sistema responderá automaticamente.
+
+3. Banco de Dados
+3.1. Tabela de Usuários
+Armazena os usuários cadastrados.
+
+sql
+Copiar
+Editar
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
+  password_hash TEXT
+);
+3.2. Tabela de Instâncias
+Vincula as instâncias ao usuário.
+
+sql
+Copiar
+Editar
+CREATE TABLE instances (
+  id UUID PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  name VARCHAR(255),
+  status VARCHAR(50)
+);
+3.3. Tabela de Fluxos de Mensagens
+Guarda os fluxos de mensagens configurados.
+
+sql
+Copiar
+Editar
+CREATE TABLE message_flows (
+  id UUID PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  instance_id UUID REFERENCES instances(id),
+  keyword VARCHAR(255),
+  messages JSONB,
+  status VARCHAR(50)
+);
+4. Conclusão e Próximos Passos
+MVP (Produto Mínimo Viável)
+Criar a tela de conexão com o WhatsApp.
+
+Criar a tela de configuração de fluxos.
+
+Implementar execução automática dos fluxos.
+
+Futuras Melhorias
+Relatórios detalhados de mensagens enviadas.
+
+Suporte para mídia (áudios, imagens, vídeos).
+
+Integração com CRM e chatbots avançados.
+
+Este é um plano sólido para iniciar o desenvolvimento do SaaS de automação de WhatsApp com Evolution API v2. 🚀

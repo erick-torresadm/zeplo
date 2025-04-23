@@ -1,0 +1,105 @@
+Show, agora ficou ainda mais claro: o problema **não é na lógica do fluxo ou da palavra-chave em si**, mas sim que **o Replit (backend)** **não está captando corretamente a mensagem recebida** (ou não está processando o gatilho corretamente após recebê-la).
+
+Vamos resolver isso juntos em 2 passos:
+
+---
+
+## 🧪 ETAPA 1 – Confirmar se o Replit está recebendo a mensagem
+
+### ✅ Teste básico: Crie um webhook simples no Replit para logar tudo
+
+```javascript
+// Express.js
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.post('/webhook', (req, res) => {
+  console.log('📩 Mensagem recebida no webhook:');
+  console.log(JSON.stringify(req.body, null, 2)); // Veja o conteúdo completo
+  res.sendStatus(200);
+});
+
+app.listen(3000, () => {
+  console.log('🚀 Servidor rodando na porta 3000');
+});
+```
+
+### 🔍 O que você precisa ver no console:
+- O **número do remetente** (ex: `msg.from`)
+- O **conteúdo da mensagem** (ex: `msg.body` ou similar)
+- Qualquer `message_id`, `instance_id`, etc.
+
+> ⚠️ **Se não aparecer nada no console**, significa que:
+> - O webhook **não está configurado corretamente** na Evolution API.
+> - O Replit **não está exposto para o mundo** (você precisa do `repl.co` ativo com ngrok embutido).
+> - A mensagem foi enviada para um número que **não está com a instância conectada**.
+
+Se estiver aparecendo, você já venceu a primeira batalha.
+
+---
+
+## 🧪 ETAPA 2 – Validar o processamento do gatilho (palavra-chave)
+
+Se você já estiver captando a mensagem no webhook, então o próximo passo é garantir que o código está **lendo o conteúdo corretamente e comparando com as palavras-chave**.
+
+### Exemplo de função funcional:
+
+```javascript
+async function processarMensagemRecebida(msg) {
+  const texto = msg.body?.toLowerCase().trim();
+  const numero = msg.from;
+
+  if (!texto || !numero) return;
+
+  // Buscar instância pelo número (ex: vinculado ao user_id)
+  const instancia = await buscarInstanciaPorNumero(numero);
+  if (!instancia) return;
+
+  const userId = instancia.user_id;
+  const palavras = await buscarPalavrasChaveDoUsuario(userId); // ["interesse", "comprar"]
+
+  for (let palavra of palavras) {
+    if (texto.includes(palavra.toLowerCase())) {
+      const fluxo = await buscarFluxoPorPalavra(userId, palavra);
+      await enviarFluxo(numero, fluxo);
+      await registrarLog(numero, fluxo.id, 'automática');
+      return;
+    }
+  }
+
+  console.log("📭 Nenhuma palavra-chave encontrada na mensagem.");
+}
+```
+
+---
+
+## 🔎 Verificações rápidas pra você fazer:
+
+1. ❓ **O webhook da Evolution API está apontando para o endpoint correto do seu Replit?**
+   - Ele precisa apontar para: `https://<seu-projeto>.repl.co/webhook`
+
+2. ❓ **Está usando `app.use(express.json())` no início do seu backend?**
+   - Se não, ele **não vai entender o `req.body`** e vai falhar silenciosamente.
+
+3. ❓ **A Evolution está de fato mandando a mensagem pro webhook?**
+   - Vá na documentação dela e veja qual formato ela envia (algumas usam `message.text.body`, outras `data.body`, etc). Ajuste seu código pra extrair o texto certo.
+
+4. ❓ **Você está testando com outro número real no WhatsApp?**
+   - O número do remetente precisa ser diferente do número da instância.
+
+---
+
+## ✅ Solução final (checklist)
+
+- [ ] Criar endpoint `/webhook` funcional e com log
+- [ ] Confirmar que está recebendo o `msg.body` e `msg.from`
+- [ ] Implementar `processarMensagemRecebida(msg)` separadamente
+- [ ] Testar envio de mensagem com palavra-chave
+- [ ] Validar se o fluxo está sendo enviado corretamente (log de envio)
+
+---
+
+Se quiser, posso revisar seu código atual comigo aqui — me mostra o trecho onde você recebe a mensagem e tenta processar a palavra-chave. Posso identificar o erro rapidinho.
+
+Quer colar o código aqui?
