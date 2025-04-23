@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAuth } from "@/hooks/use-auth";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ import {
   FileText,
   ListTodo
 } from "lucide-react";
+import { Logo } from '../ui/logo';
 
 interface SidebarProps {
   open: boolean;
@@ -22,100 +24,96 @@ interface SidebarProps {
 
 export function Sidebar({ open, onClose }: SidebarProps) {
   const { user, logoutMutation } = useAuth();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
-  const navItems = [
-    { 
-      name: "Dashboard", 
-      path: "/", 
-      icon: <Home className="h-5 w-5 mr-3" />  
+  const menuItems = [
+    {
+      icon: <Home size={20} />,
+      label: 'Dashboard',
+      href: '/dashboard'
     },
-    { 
-      name: "Instâncias WhatsApp", 
-      path: "/instances", 
-      icon: <Smartphone className="h-5 w-5 mr-3" /> 
+    {
+      icon: <Smartphone size={20} />,
+      label: 'Instâncias WhatsApp',
+      href: '/instances'
     },
-    { 
-      name: "Fluxos de Mensagens", 
-      path: "/message-flows", 
-      icon: <MessageSquare className="h-5 w-5 mr-3" /> 
+    {
+      icon: <MessageSquare size={20} />,
+      label: 'Fluxos de Mensagens',
+      href: '/message-flows'
     },
-    { 
-      name: "Fila de Fluxos", 
-      path: "/flow-queue", 
-      icon: <ListTodo className="h-5 w-5 mr-3" /> 
+    {
+      icon: <ListTodo size={20} />,
+      label: 'Fila de Fluxos',
+      href: '/flow-queue'
     },
-    { 
-      name: "Histórico de Mensagens", 
-      path: "/message-history", 
-      icon: <History className="h-5 w-5 mr-3" /> 
+    {
+      icon: <History size={20} />,
+      label: 'Histórico de Mensagens',
+      href: '/message-history'
     },
-    { 
-      name: "Mensagens em Massa", 
-      path: "/mass-messaging", 
-      icon: <Send className="h-5 w-5 mr-3" /> 
+    {
+      icon: <Send size={20} />,
+      label: 'Mensagens em Massa',
+      href: '/mass-messaging'
     },
-    { 
-      name: "Analytics", 
-      path: "/analytics", 
-      icon: <BarChart3 className="h-5 w-5 mr-3" /> 
+    {
+      icon: <BarChart3 size={20} />,
+      label: 'Analytics',
+      href: '/analytics'
     },
-    { 
-      name: "Relatórios", 
-      path: "/reports", 
-      icon: <ChartBarStacked className="h-5 w-5 mr-3" /> 
-    },
-    { 
-      name: "Logs do Sistema", 
-      path: "/system-logs", 
-      icon: <FileText className="h-5 w-5 mr-3" /> 
+    {
+      icon: <FileText size={20} />,
+      label: 'Logs do Sistema',
+      href: '/system-logs'
     }
   ];
+
+  const handleNavigation = (href: string) => {
+    setLocation(href);
+    onClose();
+  };
 
   const handleLogout = () => {
     logoutMutation.mutate();
   };
 
   return (
-    <div className={`fixed inset-y-0 left-0 z-50 w-72 shadow-lg bg-white transform transition-transform duration-300 lg:translate-x-0 lg:static lg:inset-auto ${
-      open ? 'translate-x-0' : '-translate-x-full'
-    }`}>
-      <div className="flex flex-col h-full">
-        {/* Logo */}
-        <div className="flex items-center justify-between p-5 bg-primary-50">
-          <div className="flex items-center space-x-2">
-            <div className="p-2 bg-white rounded-xl shadow-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-            </div>
-            <span className="text-gradient font-bold text-xl">WhatsFlow</span>
-          </div>
-          <button onClick={onClose} className="lg:hidden text-slate-600 hover:text-primary-600">
-            <X className="h-6 w-6" />
-          </button>
+    <>
+      {/* Overlay */}
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 z-40 h-full w-64 transform bg-white transition-transform duration-200 ease-in-out lg:static lg:translate-x-0 ${
+          open ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex h-16 items-center border-b border-[#E2E8F0] px-6">
+          <Logo />
         </div>
 
-        {/* Navigation */}
-        <div className="flex-1 overflow-y-auto pt-4">
-          <nav className="px-3 space-y-2">
-            {navItems.map(item => (
-              <Link key={item.path} href={item.path}>
-                <Button
-                  variant={location === item.path ? "secondary" : "ghost"}
-                  className={`w-full justify-start rounded-lg py-6 ${
-                    location === item.path 
-                      ? 'bg-primary-50 text-primary-600 font-medium shadow-sm' 
-                      : 'text-slate-600 hover:bg-slate-100'
-                  }`}
-                >
-                  {item.icon}
-                  {item.name}
-                </Button>
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <nav className="space-y-1 px-3 py-4">
+          {menuItems.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => handleNavigation(item.href)}
+              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                location === item.href
+                  ? 'bg-[#F1F5F9] text-[#1E293B]'
+                  : 'text-[#64748B] hover:bg-[#F1F5F9] hover:text-[#1E293B]'
+              }`}
+            >
+              {item.icon}
+              {item.label}
+            </button>
+          ))}
+        </nav>
 
         {/* User Menu */}
         {user && (
@@ -138,6 +136,6 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

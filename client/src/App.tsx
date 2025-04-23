@@ -14,7 +14,7 @@ import MassMessagingPage from "@/pages/mass-messaging-simplified";
 import SystemLogsPage from "@/pages/system-logs-page";
 import FlowQueuePage from "@/pages/flow-queue-page";
 import DebugToolsPage from "@/pages/debug-tools-page";
-import { AuthProvider } from "@/hooks/use-auth";
+import { AuthProvider } from "@/contexts/auth-context";
 import { WhatsAppProvider } from "@/context/whatsapp-context";
 import { ProtectedRoute } from "./lib/protected-route";
 
@@ -42,8 +42,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <WhatsAppProvider>
-          <Router />
-          <Toaster />
+          <div className="min-h-screen bg-[#0A0A0A] text-white">
+            <Router />
+            <Toaster />
+          </div>
         </WhatsAppProvider>
       </AuthProvider>
     </QueryClientProvider>
