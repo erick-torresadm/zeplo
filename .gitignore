@@ -36,3 +36,5 @@ Thumbs.db
 server/public
 vite.config.ts.*
 *.tar.gz
+.qodo
+attached_assets/
