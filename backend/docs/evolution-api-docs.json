@@ -1,0 +1,244 @@
+{
+  "baseUrl": "https://api.zeplo.com.br",
+  "endpoints": {
+    "instancecreate": {
+      "endpoint": "/instance/create",
+      "method": "POST",
+      "status": "SUCCESS",
+      "description": "Criar uma nova instância do WhatsApp",
+      "payload": {
+        "instanceName": "test-1745877887663",
+        "token": "",
+        "qrcode": true,
+        "integration": "WHATSAPP-BAILEYS"
+      },
+      "response": {
+        "instance": {
+          "instanceName": "test-1745877887663",
+          "instanceId": "00399337-261a-4a17-bc5f-c7c8d1c5abcd",
+          "integration": "WHATSAPP-BAILEYS",
+          "webhookWaBusiness": null,
+          "accessTokenWaBusiness": "",
+          "status": "connecting"
+        },
+        "hash": "2264E55E-FFBE-4A16-A390-C8EEA14A1883",
+        "webhook": {},
+        "websocket": {},
+        "rabbitmq": {},
+        "sqs": {},
+        "settings": {
+          "rejectCall": false,
+          "msgCall": "",
+          "groupsIgnore": false,
+          "alwaysOnline": false,
+          "readMessages": false,
+          "readStatus": false,
+          "syncFullHistory": false,
+          "wavoipToken": ""
+        },
+        "qrcode": {
+          "pairingCode": null,
+          "code": "2@m/oK0oKvEF1UZogIBirf2hkM7ahYAQT/Wq1jZAJmVpJKWWmWHFpzsj/w2RwC+dVH0PRmk0DJThhKeyuDlWkIE/Wr0Om4+x9iPPw=,LJadZ+vFYQ7RxbdPQuumAoh0uiNQWWS35SzB5idXj34=,GQ/WKrllCw4Nds5EKQWRnlmhMuSWHwpUl+XykIuFXAY=,rmUO6EXTGnJPtPb8rUlkefpuiaMepm/X/kY95iusDKE=",
+          "base64": "data:image/png;base64,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WUxuceIWN9xiiixOIovJLU7cYoosbrjFG5HF5BY33GKKLCa3mCKLyS2myOIkspjcYoosJrc4iSzecIt/KbKY3OIksjhxiymyOIksJreYIovJLabI4sQtpsjihlv8S27xxsNaa61PPKy11vrEw1prrU/8+vMXFyKLyS2myOJLbnESWUxuMUUWJ24xRRaTW7wRWUxuMUUWX3KLk8jixC3eiCx+kltMkcUNt5giiy+5xUlkMbnFjcjixC2myGJyixuRxf+XuMWNh7XWWp94WGut9YmHtdZan/j15y/+ochicosbkcUNt3gjsnjDLabIYnKLk8hicosbkcXkFlNkMbnFFFlMbjFFFpNbTJHFiVtMkcXkFlNkccMtpsjixC1OIovJLabI4sQtflJkccMtTiKLE7eYIosTt5gii8ktpshicouTyGJyiymymNziJLK44RZvPKy11vrEw1prrU88rLXW+sRvLkUWJ27xRmRx4hZTZPEvucUUWZxEFj8pspjc4sQtTtxiiiwmt7gRWdyILCa3mCKLNyKLyS2myOKNyOLELU4iixO3mCKLyS1uRBaTW5y4xQ23+EmRxeQWk1tMkcVJZHHiFieRxRRZTG5x42GttdYnHtZaa33iYa211id+/fmLC5HFG27xRmQxucUUWUxucSOyuOEWJ5HFl9xiiiwmt5giixtuMUUWk1tMkcUNt5gii8ktpshicoufFFlMbnESWUxucSOyuOEWU2Rxwy1uRBY33GKKLCa3mCKLyS3eiCxO3OIkspjc4o2HtdZan3hYa631iYe11lqf+M3/mMjiDbf4SW4xRRZTZHHiFieRxQ23+JfcYoos3nCLKbI4iSwmtzhxi5PIYnKLk8jiRmRxElnccIs33OKNyGJyi8ktTiKLG5HF5BZTZDG5xRRZnLjFSWRx4hZTZDG5xY2HtdZan3hYa631iYe11lqf+PXnLy5EFpNbnEQWJ25xEllMbnESWUxucRJZnLjFjchicospspjc4iSymNziRmRxwy1OIovJLabIYnKLNyKLE7e4EVlMbjFFFpNbTJHFiVtMkcXkFieRxRtuMUUWk1tMkcUNt5gii8ktpsjiDbeYIovJLX5SZHHDLW48rLXW+sTDWmutTzystdb6xG/+Y5HFjchicovJLabI4sQtTiKLyS3ecIspsjhxi5PI4sQt3ogsJreYIouTyGJyiymyOHGLKbKYIosTt/gvucUUWUxuMbnFFFmcuMWJW0yRxQ23OHGLE7f4SW5xElmcuMUUWXzpYa211ice1lprfeJhrbXWJ37zUmQxucXkFlNkMbnF/zK3mCKLyS0mt5gii8ktJrc4iSwmt3gjspjcYoosTiKLyS2myGJyi/9SZDG5xYlbTJHF5BYnkcUbkcXkFlNkMUUWk1ucuMUUWbwRWZy4xY3I4oZbTG5xEllMbnESWUxu8cbDWmutTzystdb6xMNaa61P/OaSW0yRxUlkMbnFSWRxwy2myGJyiymymCKLyS2myGJyi5PI4iSymNziS25xwy2myOLELabI4oZbTJHF5BZTZHHiFlNkMbnFFFm84RZTZDG5xRRZ3HCLk8hicosTt5gii5PI4idFFpNbnEQWU2Rxwy3eiCwmt7jxsNZa6xMPa621PvGw1lrrE7/5YZHF5BY33GKKLCa3mCKLk8hicospspgii8ktpsjihltMkcUNt5gii8ktpshiiiwmt5giizcii8ktTtxiiizecIuTyGJyixtucRJZTG4xucUUWZy4xUlkcSOymNxiiix+klvccIs33OJfcouf9LDWWusTD2uttT7xsNZa6xO/ecktpsjiJLJ4I7I4cYspsjhxiymyOHGLk8jixC2myGJyiymymNzixC2myOJfcosbkcXkFlNk8ZPcYoosJreY3OIksrgRWUxucRJZTG4xucUUWUxuccMtpsjiX4osJre44RZTZHHDLabI4g23uPGw1lrrEw9rrbU+8bDWWusTv/lhbjFFFiducRJZTG7xRmQxucXkFjcii8ktpsjixC1uRBaTW9yILCa3mCKLE7c4iSwmt5giiymyOHGLk8jihlucRBaTW0xucRJZvOEWb0QWk1t8KbL4L7nFFFlMkcWJW0yRxU96WGut9YmHtdZan3hYa631id/8sMjijchicosbkcWJW7wRWZxEFiduMUUWN9xiiix+klucRBaTW/wkt5gii8ktJrc4iSxuuMWNyGJyi5PIYnKLKbKY3GKKLCa3eCOyeMMtpshicouTyGJyiymymNziJLI4cYspsjhxiymyeONhrbXWJx7WWmt94mGttdYnfv35iwuRxU9yizciixO3mCKLL7nFFFlMbjFFFpNb3IgsvuQWJ5HF5BYnkcUNt5giixO3OIksJreYIosbbjFFFjfcYoos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",
+          "count": 1
+        }
+      }
+    },
+    "instanceconnectionState": {
+      "endpoint": "/instance/connectionState/test-1745877887663",
+      "method": "GET",
+      "status": "SUCCESS",
+      "description": "Verificar o estado atual de conexão da instância",
+      "response": {
+        "instance": {
+          "instanceName": "test-1745877887663",
+          "state": "connecting"
+        }
+      }
+    },
+    "chatfindMessages": {
+      "endpoint": "/chat/findMessages/test-1745877887663",
+      "method": "POST",
+      "status": "SUCCESS",
+      "description": "Buscar mensagens de um chat específico",
+      "payload": {
+        "number": "5511999999999",
+        "count": 5
+      },
+      "response": {
+        "messages": {
+          "total": 0,
+          "pages": 0,
+          "currentPage": 1,
+          "records": []
+        }
+      }
+    },
+    "instancefetchInstances": {
+      "endpoint": "/instance/fetchInstances",
+      "method": "GET",
+      "status": "SUCCESS",
+      "description": "Listar todas as instâncias",
+      "response": [
+        {
+          "id": "2bd70d1e-7bcb-4611-b2d2-b9606f0edee2",
+          "name": "test-1745863186449",
+          "connectionStatus": "connecting",
+          "ownerJid": null,
+          "profileName": null,
+          "profilePicUrl": null,
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "17CB6673-9236-4650-824B-532F38D6CAF2",
+          "clientName": "evolution",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-04-28T17:59:45.729Z",
+          "updatedAt": "2025-04-28T22:04:11.854Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cma1dv3o20013n04raq7wt3cb",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": "",
+            "createdAt": "2025-04-28T17:59:45.747Z",
+            "updatedAt": "2025-04-28T17:59:45.747Z",
+            "instanceId": "2bd70d1e-7bcb-4611-b2d2-b9606f0edee2"
+          },
+          "_count": {
+            "Message": 0,
+            "Contact": 0,
+            "Chat": 0
+          }
+        },
+        {
+          "id": "4beb4f32-a8ba-433a-a0e6-fd0e6fdd46f5",
+          "name": "test-instance",
+          "connectionStatus": "connecting",
+          "ownerJid": null,
+          "profileName": null,
+          "profilePicUrl": null,
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "6673970B-9E7D-4B4D-98BB-6BEAAAC39798",
+          "clientName": "evolution",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-04-28T03:37:40.442Z",
+          "updatedAt": "2025-04-28T22:04:30.939Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cma0j2g710001n04rsl1kz5bg",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": "",
+            "createdAt": "2025-04-28T03:37:40.475Z",
+            "updatedAt": "2025-04-28T03:37:40.475Z",
+            "instanceId": "4beb4f32-a8ba-433a-a0e6-fd0e6fdd46f5"
+          },
+          "_count": {
+            "Message": 0,
+            "Contact": 0,
+            "Chat": 0
+          }
+        },
+        {
+          "id": "00399337-261a-4a17-bc5f-c7c8d1c5abcd",
+          "name": "test-1745877887663",
+          "connectionStatus": "connecting",
+          "ownerJid": null,
+          "profileName": null,
+          "profilePicUrl": null,
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "2264E55E-FFBE-4A16-A390-C8EEA14A1883",
+          "clientName": "evolution",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-04-28T22:04:46.349Z",
+          "updatedAt": "2025-04-28T22:04:47.585Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cma1mm6qe0067n04rvd7q4ovh",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": "",
+            "createdAt": "2025-04-28T22:04:46.356Z",
+            "updatedAt": "2025-04-28T22:04:46.356Z",
+            "instanceId": "00399337-261a-4a17-bc5f-c7c8d1c5abcd"
+          },
+          "_count": {
+            "Message": 0,
+            "Contact": 0,
+            "Chat": 0
+          }
+        }
+      ]
+    },
+    "instanceinfo": {
+      "endpoint": "/instance/info/test-1745877887663",
+      "method": "GET",
+      "status": "FAILED",
+      "description": "Verificar informações da instância"
+    },
+    "groupfetchAllGroups": {
+      "endpoint": "/group/fetchAllGroups/test-1745877887663?getParticipants=true",
+      "method": "GET",
+      "status": "FAILED",
+      "description": "Listar todos os grupos"
+    },
+    "contactget": {
+      "endpoint": "/contact/get/test-1745877887663",
+      "method": "GET",
+      "status": "FAILED",
+      "description": "Listar todos os contatos"
+    },
+    "instancedelete": {
+      "endpoint": "/instance/delete/test-1745877887663",
+      "method": "DELETE",
+      "status": "SUCCESS",
+      "description": "Excluir uma instância do WhatsApp",
+      "response": {
+        "status": "SUCCESS",
+        "error": false,
+        "response": {
+          "message": "Instance deleted"
+        }
+      }
+    }
+  },
+  "testedAt": "2025-04-28T22:05:13.495Z"
+}

@@ -9,413 +9,302 @@
  * que podem variar dependendo da versão e configuração.
  */
 
-import { log } from './vite';
-import { storage } from './storage';
-import { processIncomingMessage } from './message-processor';
-import { evolutionApi } from './evolution-api';
+import express from 'express';
+import { Server } from 'http';
+import { logger } from '../utils/logger';
+import { databaseService } from './database';
+import { evolutionAPI } from './evolution-api';
+import { FlowManager } from './flow-manager';
+import { FlowExecutor } from './flow-executor';
+import { WhatsAppService } from './whatsapp';
+import { logError, logInfo } from '../utils/logger';
+import { Instance } from '../types/instance';
+import { EventEmitter } from 'events';
+import * as net from 'net';
 
-/**
- * Processa um evento de webhook da Evolution API
- * Exportado como processWebhook para compatibilidade com as rotas
- */
-export async function processWebhook(webhookData: any): Promise<any> {
-  console.log('teste')
-  try {
-    // Verifica se o webhook contém os dados necessários
-    if (!webhookData || !webhookData.instance || !webhookData.instance.instanceName) {
-      log(`[Webhook] Dados de webhook inválidos`, 'webhook');
-      return {
-        success: false,
-        message: 'Dados de webhook inválidos'
-      };
-    }
-
-    const instanceName = webhookData.instance.instanceName;
-    log(`[Webhook] Recebido webhook para instância ${instanceName}`, 'webhook');
-
-    // Busca instância no banco de dados pelo nome
-    const instances = await storage.getInstancesByName(instanceName);
-    if (!instances || instances.length === 0) {
-      log(`[Webhook] Instância ${instanceName} não encontrada no banco de dados`, 'webhook');
-      return {
-        success: false,
-        message: `Instância ${instanceName} não encontrada`
-      };
-    }
-
-    const instance = instances[0];
-
-    // Registra a recepção do webhook
-    log(`[Webhook] Processando webhook para instância ${instanceName} (ID: ${instance.id})`, 'webhook');
-
-    // Extrai o ID da instância (pode estar em diferentes lugares dependendo da versão da API)
-    const instanceId = webhookData.instance?.instanceId || instance.id;
-    
-    // Debug completo do webhook recebido para diagnóstico
-    console.log('[DEBUG WEBHOOK COMPLETO]', JSON.stringify(webhookData, null, 2));
-    
-    // Verifica se é um evento de mensagem
-    if (webhookData.event === 'messages.upsert' || 
-        (webhookData.data && webhookData.data.message) || 
-        !!webhookData.receive || 
-        !!webhookData.recieve) {
-      await handleNewMessage(instanceId, webhookData);
-    } 
-    // Verificar se é um evento de mudança de estado de conexão
-    else if (webhookData.event === 'connection.update' || 
-             webhookData.event === 'status.instance' || 
-             (webhookData.connection && webhookData.connection.state)) {
-      await handleConnectionUpdate(instanceId, webhookData);
-    }
-    // Outros tipos de eventos
-    else {
-      log(`[Webhook] Evento desconhecido ou não tratado: ${webhookData.event || 'sem tipo de evento'}`, 'webhook');
-      console.log(`[Webhook] Estrutura do webhook não reconhecida:`, JSON.stringify(webhookData, null, 2));
-    }
-
-    return {
-      success: true,
-      message: 'Webhook processado com sucesso',
-      instanceId: instance.id
-    };
-  } catch (error) {
-    log(`[Webhook] Erro ao processar webhook: ${error}`, 'webhook');
-    return {
-      success: false,
-      message: `Erro ao processar webhook: ${error}`
-    };
-  }
+interface Flow {
+  id: string;
+  trigger_type?: 'keyword' | 'regex';
+  trigger_value?: string;
 }
 
-/**
- * Trata um evento de nova mensagem de forma simplificada
- * Foca em extrair diretamente o número do remetente e o conteúdo da mensagem
- * para processar o fluxo de respostas de forma mais direta
- */
-async function handleNewMessage(instanceId: string, webhookData: any): Promise<void> {
-  try {
-    log(`[Webhook] Processando evento de nova mensagem para instância ${instanceId}`, 'webhook');
-    
-    // Debug completo do webhook para análise
-    console.log(`[DEBUG WEBHOOK COMPLETO]`, JSON.stringify(webhookData, null, 2));
-    
-    // Busca a instância completa (necessário fazer antes para verificar se existe)
-    const instance = await storage.getInstance(instanceId);
-    if (!instance) {
-      log(`[Webhook] Instância ${instanceId} não encontrada para processamento de mensagem`, 'webhook');
-      return;
+interface WebhookData {
+  event: string;
+  data: {
+    instance: {
+      id: string;
+    };
+    message: {
+      from: string;
+      body: string;
+      id: string;
+    };
+    status?: string;
+  };
+}
+
+interface WebhookEvent {
+  instanceName: string;
+  event: string;
+  data: any;
+}
+
+interface MessageData {
+  instance_id: number;
+  message_id: string;
+  from: string;
+  to: string;
+  content: string;
+  type: string;
+  timestamp: Date;
+}
+
+class WebhookHandler extends EventEmitter {
+  private server: Server | null = null;
+  port: number = 3001;
+
+  constructor() {
+    super();
+  }
+
+  async handleWebhook(instanceName: string, data: any) {
+    try {
+      logger.info(`Received webhook for instance ${instanceName}:`, data);
+
+      // Emit event for any listeners
+      this.emit('webhook-event', { instanceName, ...data });
+
+      // Handle different event types
+      if (data.event === 'qrcode.updated') {
+        await this.handleQRCodeUpdate(instanceName, data);
+      } else if (data.event === 'connection.update') {
+        await this.handleConnectionUpdate(instanceName, data);
+      } else if (data.event === 'messages.upsert') {
+        await this.handleNewMessage(instanceName, data);
+      }
+    } catch (error) {
+      logger.error('Error handling webhook:', error);
+      throw error;
     }
-    
-    // Registra a atividade de recebimento de webhook
-    await storage.createActivity(instance.userId, {
-      type: "webhook_message_received",
-      description: `Webhook de mensagem recebido para a instância ${instance.name}`,
-      entityType: "instance",
-      entityId: instance.id
-    });
-    
-    // Extrai as mensagens do webhook de modo simplificado (suporta diferentes formatos da API)
-    let messages = [];
-    
-    if (webhookData.receive?.messages && webhookData.receive.messages.length > 0) {
-      messages = webhookData.receive.messages;
-    } else if (webhookData.recieve?.messages && webhookData.recieve.messages.length > 0) {
-      messages = webhookData.recieve.messages;
-    } else if (webhookData.data?.message) {
-      messages = [webhookData.data.message];
-    } else if (webhookData.messages && webhookData.messages.length > 0) {
-      messages = webhookData.messages;
-    } else if (webhookData.data?.messages && webhookData.data.messages.length > 0) {
-      messages = webhookData.data.messages;
+  }
+
+  private async handleQRCodeUpdate(instanceName: string, data: any) {
+    try {
+      logger.info(`QR code update received for instance: ${instanceName}`);
+      
+      // Find the instance in the database
+      const instance = await databaseService.getInstanceByName(instanceName);
+      
+      if (!instance) {
+        logger.warn(`Instance ${instanceName} not found in database`);
+        return;
+      }
+      
+      // Update the instance with the new QR code
+      await databaseService.updateInstance(instance.id, {
+        status: 'connecting'
+      });
+      
+      // Armazenar o QR code em outro campo ou em uma tabela específica se necessário
+      
+    } catch (error) {
+      logger.error('Error handling QR code update:', error);
     }
-    
-    log(`[Webhook] Encontradas ${messages.length} mensagens para processar`, 'webhook');
-    
-    // Cria uma fila para mostrar que as mensagens estão sendo processadas
-    const messageQueue = messages.map((msg: any, index: number) => {
-      // Formata um identificador básico para a mensagem
-      const messageId = msg.key?.id || msg.id || `msg-${Date.now()}-${index}`;
-      return {
-        index,
-        messageId,
-        status: 'pendente',
-        processStartTime: null,
-        processEndTime: null
-      };
-    });
-    
-    console.log(`[WEBHOOK FILA] Mensagens para processar:`, JSON.stringify(messageQueue, null, 2));
-    
-    // Processa cada mensagem na notificação
-    for (let i = 0; i < messages.length; i++) {
-      const message = messages[i];
-      const queueItem = messageQueue[i];
+  }
+
+  private async handleConnectionUpdate(instanceName: string, data: any) {
+    try {
+      const instance = await databaseService.getInstanceByName(instanceName);
+      if (!instance) {
+        logger.error(`Instance ${instanceName} not found`);
+        return;
+      }
+
+      const status = data.status === 'open' ? 'connected' : 
+                    data.status === 'close' ? 'disconnected' : 
+                    data.status === 'connecting' ? 'connecting' : 'error';
+
+      await databaseService.updateInstance(instance.id, { status });
+    } catch (error) {
+      logger.error('Error handling connection update:', error);
+      throw error;
+    }
+  }
+
+  private async handleNewMessage(instanceName: string, data: any) {
+    try {
+      logger.info(`New message received for instance: ${instanceName}`);
       
-      queueItem.status = 'processando';
-      queueItem.processStartTime = new Date().toISOString();
+      // Find the instance in the database
+      const instance = await databaseService.getInstanceByName(instanceName);
       
-      log(`[Webhook] Iniciando processamento da mensagem ${i+1}/${messages.length}`, 'webhook');
-      
-      // Ignora mensagens enviadas por nós mesmos
-      const isFromMe = message.key?.fromMe === true || message.fromMe === true;
-      if (isFromMe) {
-        log(`[Webhook] Ignorando mensagem enviada por mim mesmo`, 'webhook');
-        queueItem.status = 'ignorada';
-        queueItem.processEndTime = new Date().toISOString();
-        continue;
+      if (!instance) {
+        logger.warn(`Instance ${instanceName} not found in database`);
+        return;
       }
       
-      // Obtém ID da mensagem
-      const messageId = message.key?.id || message.id || `webhook-${Date.now()}-${i}`;
-      
-      // Extrai o número do telefone - prioriza formatos mais comuns
-      let phoneNumber = null;
-      
-      if (message.key?.remoteJid) {
-        phoneNumber = message.key.remoteJid.split('@')[0];
-      } else if (message.sender?.formattedNumber) {
-        phoneNumber = message.sender.formattedNumber;
-      } else if (message.sender?.id) {
-        phoneNumber = message.sender.id.split('@')[0];
-      } else if (message.from) {
-        phoneNumber = typeof message.from === 'string' ? message.from.split('@')[0] : message.from;
+      // Process the message
+      if (data.message) {
+        // Save message to history if needed
+        // This requires implementing the saveMessage method in databaseService
+        const messageData = {
+          instance_id: instance.id,
+          message_id: data.message.id,
+          from: data.message.from,
+          to: instanceName,
+          content: data.message.body,
+          type: 'text',
+          timestamp: new Date()
+        };
+        
+        // Uncomment when saveMessage is implemented
+        // await databaseService.saveMessage(messageData);
       }
       
-      // Normaliza o formato do número (remove caracteres não numéricos)
-      if (phoneNumber) {
-        phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
-      }
+      // Process message for flows if it's incoming
+      // This can be implemented later
       
-      if (!phoneNumber) {
-        log(`[Webhook] Mensagem sem número de telefone válido, ignorando`, 'webhook');
-        queueItem.status = 'erro';
-        queueItem.processEndTime = new Date().toISOString();
-        continue;
-      }
+    } catch (error) {
+      logger.error('Error handling new message:', error);
+    }
+  }
+
+  async setupWebhookServer() {
+    try {
+      const webhookPort = parseInt(process.env.WEBHOOK_PORT || '3001');
       
-      // Extrai o texto da mensagem - prioriza formatos mais comuns
-      let messageText = '';
-      
-      if (message.message?.conversation) {
-        messageText = message.message.conversation;
-      } else if (message.message?.extendedTextMessage?.text) {
-        messageText = message.message.extendedTextMessage.text;
-      } else if (message.body) {
-        messageText = message.body;
-      } else if (typeof message.message === 'string') {
-        messageText = message.message;
-      } else if (message.text) {
-        messageText = message.text;
-      }
-      
-      // Se não conseguiu extrair texto, marca como conteúdo não textual
-      if (!messageText) {
-        messageText = "(Conteúdo não textual)";
-      }
-      
-      // Obtém timestamp
-      const timestamp = message.messageTimestamp 
-        ? (typeof message.messageTimestamp === 'number' ? message.messageTimestamp : parseInt(message.messageTimestamp)) 
-        : Math.floor(Date.now() / 1000);
-      
-      log(`[Webhook] Processando mensagem de ${phoneNumber}: "${messageText}"`, 'webhook');
-      
-      try {
-        // Log detalhado da mensagem que será processada
-        console.log(`[WEBHOOK MENSAGEM] Processando mensagem:
-          - Número remetente: ${phoneNumber}
-          - Conteúdo: "${messageText}"
-          - ID: ${messageId}
-          - Timestamp: ${new Date(timestamp * 1000).toISOString()}
-          - Instância: ${instance.name} (${instance.id})
-        `);
+      // Verificar se a porta está disponível
+      if (!await isPortAvailable(webhookPort)) {
+        logger.warn(`Porta ${webhookPort} já está em uso, buscando porta alternativa...`);
         
-        // Registra no histórico antes do processamento
-        const messageHistoryEntry = await storage.createMessageHistory(instance.userId, {
-          instanceId: instance.id,
-          instanceName: instance.name,
-          sender: phoneNumber,
-          messageContent: messageText,
-          timestamp: new Date(timestamp * 1000),
-          status: 'received',
-          triggeredKeyword: null,
-          flowId: null
-        });
+        // Tentar encontrar uma porta alternativa
+        const alternativePort = await findAvailablePort(webhookPort + 1);
         
-        console.log(`[WEBHOOK PROCESSANDO] Iniciando processamento do fluxo para a mensagem "${messageText}"`);
-        
-        // Processa a mensagem para verificar e disparar fluxos configurados
-        // Adicionamos o parâmetro true para sendToWebhook
-        log(`[Webhook] Chamando processIncomingMessage com parâmetro sendToWebhook=true`, 'webhook');
-        
-        const processed = await processIncomingMessage(
-          instance,
-          phoneNumber,
-          messageText,
-          messageId,
-          timestamp * 1000,
-          true // Ativa envio para webhook externo
-        );
-        
-        log(`[Webhook] Resultado do processamento: ${processed ? 'Mensagem processada' : 'Mensagem não processada'}`, 'webhook');
-        
-        if (processed) {
-          log(`[Webhook] Mensagem processada com sucesso por um fluxo: ${messageId}`, 'webhook');
-          queueItem.status = 'concluído';
-          
-          // Atualiza o registro no histórico
-          if (messageHistoryEntry?.id) {
-            await storage.updateMessageHistoryStatus(
-              messageHistoryEntry.id, 
-              'triggered',
-              `Mensagem processada e fluxo disparado`
-            );
-          }
-        } else {
-          log(`[Webhook] Mensagem não processada por nenhum fluxo: ${messageId}`, 'webhook');
-          queueItem.status = 'não processada';
+        if (alternativePort === -1) {
+          logger.error('Não foi possível iniciar o servidor de webhook: todas as portas estão ocupadas');
+          return null;
         }
-      } catch (processError) {
-        log(`[Webhook] Erro ao processar mensagem via webhook: ${processError}`, 'webhook');
-        queueItem.status = 'erro';
-        console.error('[WEBHOOK ERRO] Detalhes do erro:', processError);
+        
+        logger.info(`Usando porta alternativa ${alternativePort} para o servidor de webhook`);
+        this.port = alternativePort;
+      } else {
+        this.port = webhookPort;
       }
       
-      queueItem.processEndTime = new Date().toISOString();
+      // Criar o servidor Express
+      const app = express();
+      app.use(express.json());
+      
+      // Configurar endpoint de webhook
+      app.post('/webhook/:event', (req, res) => {
+        const { event } = req.params;
+        const data = req.body;
+        this.handleWebhook(event, data);
+        res.status(200).send('OK');
+      });
+      
+      // Configurar endpoint de health check
+      app.get('/health', (req, res) => {
+        res.json({ status: 'ok', timestamp: new Date() });
+      });
+      
+      // Iniciar o servidor
+      const server = app.listen(this.port, () => {
+        logger.info(`Webhook server listening on port ${this.port}`);
+      });
+      
+      this.server = server;
+      return server;
+    } catch (error) {
+      logger.error('Error setting up webhook server:', error);
+      return null;
     }
-    
-    // Log final da fila de processamento
-    console.log(`[WEBHOOK FILA] Status final do processamento:`, JSON.stringify(messageQueue, null, 2));
-    
-  } catch (error) {
-    log(`[Webhook] Erro ao processar evento de mensagem: ${error}`, 'webhook');
-    console.error('[WEBHOOK ERRO GERAL] Falha no tratamento do webhook:', error);
+  }
+
+  stopWebhookServer() {
+    if (this.server) {
+      this.server.close();
+      this.server = null;
+    }
+  }
+
+  // Method added for EventEmitter functionality
+  on(event: string, listener: (...args: any[]) => void): this {
+    return super.on(event, listener);
   }
 }
 
-/**
- * Trata um evento de atualização de conexão
- */
-async function handleConnectionUpdate(instanceId: string, webhookData: any): Promise<void> {
-  try {
-    log(`[Webhook] Processando evento de atualização de conexão`, 'webhook');
-
-    // Extrai informações de estado da conexão
-    const connectionState = webhookData.connection || {};
-    const newState = connectionState.state || '';
-
-    // Busca a instância no banco
-    const instance = await storage.getInstance(instanceId);
-    if (!instance) {
-      log(`[Webhook] Instância ${instanceId} não encontrada`, 'webhook');
-      return;
-    }
-
-    log(`[Webhook] Instância ${instance.name} teve atualização de estado: ${newState}`, 'webhook');
-
-    // Atualiza o status da instância de acordo com o novo estado
-    // Suporte para ambos os formatos da Evolution API v1 e v2
-    const isConnected = newState === 'open' || newState === 'connected' || newState === 'CONNECTED';
-    const isDisconnected = newState === 'close' || newState === 'disconnected' || newState === 'DISCONNECTED';
+// Função para verificar se uma porta está disponível
+async function isPortAvailable(port: number): Promise<boolean> {
+  return new Promise((resolve) => {
+    const server = net.createServer();
     
-    if (isConnected && instance.status !== 'connected') {
-      await storage.updateInstanceStatus(instanceId, 'connected');
-      log(`[Webhook] Status da instância ${instance.name} atualizado para 'connected' (estado original: ${newState})`, 'webhook');
-      
-      // Após a conexão, configuramos as settings recomendadas
-      try {
-        await evolutionApi.setSettings(instance.name, {
-          reject_call: true,
-          read_messages: true,
-          read_status: true
-        });
-        log(`[Webhook] Configurações de leitura de mensagens aplicadas para ${instance.name}`, 'webhook');
-      } catch (error: any) {
-        log(`[Webhook] Erro ao configurar settings após conexão: ${error?.message || 'Erro desconhecido'}`, 'webhook');
+    server.once('error', (err: any) => {
+      if (err.code === 'EADDRINUSE') {
+        logger.warn(`Porta ${port} já está em uso`);
+        resolve(false);
+      } else {
+        logger.error(`Erro ao verificar disponibilidade da porta ${port}:`, err);
+        resolve(false);
       }
-      
-      // Registra atividade
-      await storage.createActivity(instance.userId, {
-        type: "instance_connected",
-        description: `Instância ${instance.name} conectada via webhook`,
-        entityType: "instance",
-        entityId: instance.id
-      });
-    } 
-    else if (isDisconnected && instance.status !== 'disconnected') {
-      await storage.updateInstanceStatus(instanceId, 'disconnected');
-      log(`[Webhook] Status da instância ${instance.name} atualizado para 'disconnected' (estado original: ${newState})`, 'webhook');
-      
-      // Registra atividade
-      await storage.createActivity(instance.userId, {
-        type: "instance_disconnected",
-        description: `Instância ${instance.name} desconectada via webhook`,
-        entityType: "instance",
-        entityId: instance.id
-      });
-    }
-  } catch (error) {
-    log(`[Webhook] Erro ao processar evento de conexão: ${error}`, 'webhook');
-  }
+    });
+    
+    server.once('listening', () => {
+      server.close();
+      resolve(true);
+    });
+    
+    server.listen(port);
+  });
 }
+
+// Função para encontrar uma porta disponível
+async function findAvailablePort(startPort: number, maxAttempts: number = 10): Promise<number> {
+  let currentPort = startPort;
+  let attempts = 0;
+  
+  while (attempts < maxAttempts) {
+    if (await isPortAvailable(currentPort)) {
+      return currentPort;
+    }
+    
+    currentPort++;
+    attempts++;
+  }
+  
+  return -1; // Nenhuma porta disponível encontrada
+}
+
+export const webhookHandler = new WebhookHandler();
+export const setupWebhookServer = () => webhookHandler.setupWebhookServer();
 
 /**
  * Configura o webhook para uma instância na Evolution API
  */
 export async function setupInstanceWebhook(instanceId: string, baseUrl: string): Promise<boolean> {
   try {
-    // Busca a instância no banco
-    const instance = await storage.getInstance(instanceId);
-    if (!instance) {
-      log(`[Webhook] Instância ${instanceId} não encontrada para configuração de webhook`, 'webhook');
-      return false;
-    }
-
-    // Constrói a URL do webhook com autenticação
-    const webhookUrl = `${baseUrl}/api/webhook/${instanceId}`;
-    log(`[Webhook] Configurando webhook para instância ${instance.name}: ${webhookUrl}`, 'webhook');
-
-    // Configura o webhook na Evolution API
-    const result = await evolutionApi.setWebhook(instance.name, webhookUrl);
+    const webhookUrl = `${baseUrl}/webhooks/${instanceId}`;
+    logger.info(`Setting up webhook for instance ${instanceId} at ${webhookUrl}`);
     
-    if (!result.status) {
-      log(`[Webhook] Erro ao configurar webhook: ${result.message}`, 'webhook');
-      return false;
-    }
+    // Register webhook with Evolution API
+    const result = await evolutionAPI.setWebhook(instanceId, webhookUrl);
     
-    // Configura também as settings recomendadas
-    try {
-      const settingsResult = await evolutionApi.setSettings(instance.name, {
-        reject_call: true,
-        read_messages: true,
-        read_status: true,
-        msg_delete: true,
-        groups_ignore: false
+    if (result.status) {
+      logger.info('Webhook setup completed', {
+        instanceId,
+        webhookUrl
       });
-      
-      if (settingsResult.status) {
-        log(`[Webhook] Settings configurados com sucesso para ${instance.name}`, 'webhook');
-      } else {
-        log(`[Webhook] Erro ao configurar settings: ${settingsResult.message}`, 'webhook');
-      }
-    } catch (settingsError: any) {
-      log(`[Webhook] Exceção ao configurar settings: ${settingsError?.message || 'Erro desconhecido'}`, 'webhook');
-      // Não interrompe o fluxo, apenas registra o erro
+      return true;
+    } else {
+      logger.error('Webhook setup failed', {
+        instanceId,
+        webhookUrl,
+        error: result.message
+      });
+      return false;
     }
-
-    log(`[Webhook] Webhook configurado com sucesso para instância ${instance.name}`, 'webhook');
-    
-    // Registra atividade
-    await storage.createActivity(instance.userId, {
-      type: "webhook_configured",
-      description: `Webhook configurado para instância ${instance.name}`,
-      entityType: "instance",
-      entityId: instance.id
-    });
-
-    return true;
   } catch (error) {
-    log(`[Webhook] Erro ao configurar webhook: ${error}`, 'webhook');
+    logger.error('Error setting up webhook:', error);
     return false;
   }
 }

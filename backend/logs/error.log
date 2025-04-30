@@ -1,0 +1,765 @@
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T03:53:20.387Z"}
+{"level":"error","message":"API request failed: POST /instance/create","timestamp":"2025-04-28T03:53:20.466Z"}
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T03:56:35.988Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T03:56:44.864Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T03:56:44.865Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T03:56:44.865Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T03:56:44.929Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T03:56:44.929Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T03:56:44.930Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T03:56:44.979Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T03:56:45.977Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T03:56:45.983Z"}
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T03:59:11.252Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T03:59:19.187Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T03:59:19.187Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T03:59:19.187Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T03:59:19.228Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T03:59:19.228Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T03:59:19.229Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T03:59:19.275Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T03:59:20.334Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T03:59:20.341Z"}
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T04:00:36.526Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T04:00:44.358Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:00:44.358Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T04:00:44.358Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T04:00:44.402Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:00:44.402Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T04:00:44.402Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T04:00:44.446Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T04:00:45.499Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T04:00:45.506Z"}
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T04:06:06.442Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T04:06:14.136Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:06:14.136Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T04:06:14.136Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T04:06:14.183Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:06:14.183Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T04:06:14.183Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T04:06:14.232Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T04:06:15.183Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T04:06:15.189Z"}
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T04:16:40.511Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745813806635","timestamp":"2025-04-28T04:16:52.020Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T04:16:52.020Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"text\""]]},"status":400,"timestamp":"2025-04-28T04:16:52.020Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T04:16:52.021Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745813806635","timestamp":"2025-04-28T04:16:52.071Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.071Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745813806635"]},"status":404,"timestamp":"2025-04-28T04:16:52.072Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T04:16:52.072Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745813806635","timestamp":"2025-04-28T04:16:52.131Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T04:16:52.131Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T04:16:52.131Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T04:16:52.131Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745813806635","timestamp":"2025-04-28T04:16:52.189Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T04:16:52.189Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"latitude\"","instance requires property \"longitude\"","instance requires property \"name\"","instance requires property \"address\""]]},"status":400,"timestamp":"2025-04-28T04:16:52.189Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T04:16:52.189Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745813806635","timestamp":"2025-04-28T04:16:52.253Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T04:16:52.254Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T04:16:52.254Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T04:16:52.254Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745813806635","timestamp":"2025-04-28T04:16:52.310Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T04:16:52.311Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T04:16:52.311Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T04:16:52.311Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745813806635","timestamp":"2025-04-28T04:16:52.369Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T04:16:52.370Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T04:16:52.370Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T04:16:52.370Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745813806635","timestamp":"2025-04-28T04:16:52.417Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.418Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745813806635"]},"status":404,"timestamp":"2025-04-28T04:16:52.418Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T04:16:52.418Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745813806635?numbers[]=5511999999999","timestamp":"2025-04-28T04:16:52.471Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.471Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745813806635?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T04:16:52.471Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T04:16:52.471Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745813806635","timestamp":"2025-04-28T04:16:52.522Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.522Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745813806635"]},"status":404,"timestamp":"2025-04-28T04:16:52.523Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T04:16:52.523Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745813806635","timestamp":"2025-04-28T04:16:52.657Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.657Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745813806635"]},"status":404,"timestamp":"2025-04-28T04:16:52.657Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T04:16:52.657Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745813806635","timestamp":"2025-04-28T04:16:52.705Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.705Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745813806635"]},"status":404,"timestamp":"2025-04-28T04:16:52.705Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T04:16:52.705Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745813806635","timestamp":"2025-04-28T04:16:52.749Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:52.749Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745813806635"]},"status":404,"timestamp":"2025-04-28T04:16:52.749Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T04:16:52.749Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T04:16:55.309Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:55.310Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T04:16:55.310Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T04:16:55.351Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T04:16:55.352Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T04:16:55.352Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T04:16:55.392Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T04:16:56.321Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T04:16:56.328Z"}
+{"level":"error","message":"❌ Fetch instances failed!","timestamp":"2025-04-28T17:51:04.490Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745862671009","timestamp":"2025-04-28T17:51:16.346Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T17:51:16.346Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"text\""]]},"status":400,"timestamp":"2025-04-28T17:51:16.347Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T17:51:16.347Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745862671009","timestamp":"2025-04-28T17:51:16.392Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.393Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745862671009"]},"status":404,"timestamp":"2025-04-28T17:51:16.393Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T17:51:16.393Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745862671009","timestamp":"2025-04-28T17:51:16.439Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T17:51:16.440Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T17:51:16.440Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T17:51:16.440Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745862671009","timestamp":"2025-04-28T17:51:16.483Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T17:51:16.484Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"latitude\"","instance requires property \"longitude\"","instance requires property \"name\"","instance requires property \"address\""]]},"status":400,"timestamp":"2025-04-28T17:51:16.484Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T17:51:16.484Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745862671009","timestamp":"2025-04-28T17:51:16.527Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T17:51:16.528Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T17:51:16.528Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T17:51:16.528Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745862671009","timestamp":"2025-04-28T17:51:16.577Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T17:51:16.577Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T17:51:16.577Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T17:51:16.577Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745862671009","timestamp":"2025-04-28T17:51:16.619Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T17:51:16.619Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T17:51:16.620Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T17:51:16.620Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745862671009","timestamp":"2025-04-28T17:51:16.666Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.666Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745862671009"]},"status":404,"timestamp":"2025-04-28T17:51:16.666Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T17:51:16.666Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745862671009?numbers[]=5511999999999","timestamp":"2025-04-28T17:51:16.711Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.711Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745862671009?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T17:51:16.711Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T17:51:16.712Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745862671009","timestamp":"2025-04-28T17:51:16.752Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.752Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745862671009"]},"status":404,"timestamp":"2025-04-28T17:51:16.753Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T17:51:16.753Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745862671009","timestamp":"2025-04-28T17:51:16.837Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.837Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745862671009"]},"status":404,"timestamp":"2025-04-28T17:51:16.838Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T17:51:16.838Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745862671009","timestamp":"2025-04-28T17:51:16.880Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.880Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745862671009"]},"status":404,"timestamp":"2025-04-28T17:51:16.880Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T17:51:16.880Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745862671009","timestamp":"2025-04-28T17:51:16.922Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:16.922Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745862671009"]},"status":404,"timestamp":"2025-04-28T17:51:16.923Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T17:51:16.923Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T17:51:19.705Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:19.705Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T17:51:19.706Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T17:51:19.757Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T17:51:19.757Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T17:51:19.757Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T17:51:19.801Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T17:51:20.773Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T17:51:20.780Z"}
+{"level":"error","message":"❌ Failed to create instance","timestamp":"2025-04-28T17:58:11.642Z"}
+{"level":"error","message":"Error: Request failed with status code 400","timestamp":"2025-04-28T17:58:11.642Z"}
+{"level":"error","message":"❌ Failed to create instance","timestamp":"2025-04-28T17:58:25.738Z"}
+{"level":"error","message":"Error: Request failed with status code 400","timestamp":"2025-04-28T17:58:25.739Z"}
+{"error":"Request failed with status code 400","instanceName":"test-1745863141835","level":"error","message":"Error creating Evolution API instance:","response":{"error":"Bad Request","response":{"message":["Invalid integration"]},"status":400},"status":400,"timestamp":"2025-04-28T17:59:02.297Z"}
+{"level":"error","message":"❌ Failed to create instance","timestamp":"2025-04-28T17:59:02.297Z"}
+{"level":"error","message":"Error: Invalid integration","timestamp":"2025-04-28T17:59:02.297Z"}
+{"level":"error","message":"❌ Failed to delete instance","timestamp":"2025-04-28T17:59:49.033Z"}
+{"level":"error","message":"Error: Request failed with status code 404","timestamp":"2025-04-28T17:59:49.033Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745863250631","timestamp":"2025-04-28T18:00:55.977Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:00:55.978Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"text\""]]},"status":400,"timestamp":"2025-04-28T18:00:55.978Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:00:55.978Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745863250631","timestamp":"2025-04-28T18:00:56.030Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.030Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745863250631"]},"status":404,"timestamp":"2025-04-28T18:00:56.030Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:00:56.030Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745863250631","timestamp":"2025-04-28T18:00:56.084Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:00:56.084Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T18:00:56.084Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:00:56.084Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745863250631","timestamp":"2025-04-28T18:00:56.154Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:00:56.154Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"latitude\"","instance requires property \"longitude\"","instance requires property \"name\"","instance requires property \"address\""]]},"status":400,"timestamp":"2025-04-28T18:00:56.154Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:00:56.154Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745863250631","timestamp":"2025-04-28T18:00:56.213Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:00:56.214Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T18:00:56.214Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:00:56.214Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745863250631","timestamp":"2025-04-28T18:00:56.270Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:00:56.270Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T18:00:56.270Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:00:56.270Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745863250631","timestamp":"2025-04-28T18:00:56.340Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:00:56.340Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T18:00:56.340Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:00:56.340Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745863250631","timestamp":"2025-04-28T18:00:56.393Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.393Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745863250631"]},"status":404,"timestamp":"2025-04-28T18:00:56.393Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:00:56.393Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745863250631?numbers[]=5511999999999","timestamp":"2025-04-28T18:00:56.455Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.455Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745863250631?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T18:00:56.455Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:00:56.455Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745863250631","timestamp":"2025-04-28T18:00:56.532Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.532Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745863250631"]},"status":404,"timestamp":"2025-04-28T18:00:56.532Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:00:56.532Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745863250631","timestamp":"2025-04-28T18:00:56.633Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.633Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745863250631"]},"status":404,"timestamp":"2025-04-28T18:00:56.634Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:00:56.634Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745863250631","timestamp":"2025-04-28T18:00:56.682Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.683Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745863250631"]},"status":404,"timestamp":"2025-04-28T18:00:56.683Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:00:56.683Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745863250631","timestamp":"2025-04-28T18:00:56.728Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:56.728Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745863250631"]},"status":404,"timestamp":"2025-04-28T18:00:56.728Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:00:56.728Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:00:59.448Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:59.448Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:00:59.448Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:00:59.495Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:00:59.495Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:00:59.495Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:00:59.540Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:01:00.570Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:01:00.578Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745863523344","timestamp":"2025-04-28T18:05:28.723Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:05:28.723Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"text\""]]},"status":400,"timestamp":"2025-04-28T18:05:28.724Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:05:28.724Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745863523344","timestamp":"2025-04-28T18:05:28.781Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:28.781Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745863523344"]},"status":404,"timestamp":"2025-04-28T18:05:28.781Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:05:28.781Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745863523344","timestamp":"2025-04-28T18:05:28.847Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:05:28.847Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T18:05:28.847Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:05:28.847Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745863523344","timestamp":"2025-04-28T18:05:28.911Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:05:28.912Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"latitude\"","instance requires property \"longitude\"","instance requires property \"name\"","instance requires property \"address\""]]},"status":400,"timestamp":"2025-04-28T18:05:28.912Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:05:28.912Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745863523344","timestamp":"2025-04-28T18:05:29.029Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:05:29.029Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T18:05:29.029Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:05:29.029Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745863523344","timestamp":"2025-04-28T18:05:29.107Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:05:29.107Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T18:05:29.107Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:05:29.107Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745863523344","timestamp":"2025-04-28T18:05:29.214Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:05:29.214Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T18:05:29.214Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:05:29.214Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745863523344","timestamp":"2025-04-28T18:05:29.271Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:29.271Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745863523344"]},"status":404,"timestamp":"2025-04-28T18:05:29.271Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:05:29.271Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745863523344?numbers[]=5511999999999","timestamp":"2025-04-28T18:05:29.327Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:29.327Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745863523344?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T18:05:29.327Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:05:29.327Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745863523344","timestamp":"2025-04-28T18:05:29.374Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:29.374Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745863523344"]},"status":404,"timestamp":"2025-04-28T18:05:29.374Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:05:29.374Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745863523344","timestamp":"2025-04-28T18:05:29.476Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:29.476Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745863523344"]},"status":404,"timestamp":"2025-04-28T18:05:29.476Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:05:29.476Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745863523344","timestamp":"2025-04-28T18:05:29.525Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:29.525Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745863523344"]},"status":404,"timestamp":"2025-04-28T18:05:29.525Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:05:29.526Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745863523344","timestamp":"2025-04-28T18:05:29.570Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:29.571Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745863523344"]},"status":404,"timestamp":"2025-04-28T18:05:29.571Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:05:29.571Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:05:32.433Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:32.434Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:05:32.434Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:05:32.478Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:05:32.478Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:05:32.478Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:05:32.521Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:05:33.661Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:05:33.667Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745863789177","timestamp":"2025-04-28T18:09:54.708Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:09:54.708Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"text\""]]},"status":400,"timestamp":"2025-04-28T18:09:54.709Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:09:54.709Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745863789177","timestamp":"2025-04-28T18:09:54.756Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:54.756Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745863789177"]},"status":404,"timestamp":"2025-04-28T18:09:54.757Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:09:54.757Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745863789177","timestamp":"2025-04-28T18:09:54.801Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:09:54.802Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T18:09:54.802Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:09:54.802Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745863789177","timestamp":"2025-04-28T18:09:54.845Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:09:54.845Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"latitude\"","instance requires property \"longitude\"","instance requires property \"name\"","instance requires property \"address\""]]},"status":400,"timestamp":"2025-04-28T18:09:54.846Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:09:54.846Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745863789177","timestamp":"2025-04-28T18:09:54.892Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:09:54.892Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T18:09:54.892Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:09:54.893Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745863789177","timestamp":"2025-04-28T18:09:54.939Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:09:54.939Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T18:09:54.940Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:09:54.940Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745863789177","timestamp":"2025-04-28T18:09:54.984Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:09:54.984Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T18:09:54.985Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:09:54.985Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745863789177","timestamp":"2025-04-28T18:09:55.031Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:55.031Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745863789177"]},"status":404,"timestamp":"2025-04-28T18:09:55.031Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:09:55.032Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745863789177?numbers[]=5511999999999","timestamp":"2025-04-28T18:09:55.075Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:55.075Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745863789177?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T18:09:55.075Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:09:55.076Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745863789177","timestamp":"2025-04-28T18:09:55.115Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:55.115Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745863789177"]},"status":404,"timestamp":"2025-04-28T18:09:55.115Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:09:55.116Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745863789177","timestamp":"2025-04-28T18:09:55.207Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:55.208Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745863789177"]},"status":404,"timestamp":"2025-04-28T18:09:55.208Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:09:55.209Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745863789177","timestamp":"2025-04-28T18:09:55.250Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:55.251Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745863789177"]},"status":404,"timestamp":"2025-04-28T18:09:55.251Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:09:55.251Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745863789177","timestamp":"2025-04-28T18:09:55.291Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:09:55.292Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745863789177"]},"status":404,"timestamp":"2025-04-28T18:09:55.292Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:09:55.292Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745863949720","timestamp":"2025-04-28T18:12:55.151Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:12:55.152Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:12:55.152Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745863949720","timestamp":"2025-04-28T18:12:55.319Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:12:55.320Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745863949720"]},"status":404,"timestamp":"2025-04-28T18:12:55.320Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:12:55.320Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745863949720","timestamp":"2025-04-28T18:12:55.366Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:12:55.367Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T18:12:55.367Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:12:55.367Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745863949720","timestamp":"2025-04-28T18:13:15.372Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:13:15.373Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:13:15.373Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745863949720","timestamp":"2025-04-28T18:13:15.532Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:13:15.533Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T18:13:15.533Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:13:15.533Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745863949720","timestamp":"2025-04-28T18:13:15.578Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:13:15.579Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T18:13:15.579Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:13:15.579Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745863949720","timestamp":"2025-04-28T18:13:15.655Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:13:15.656Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T18:13:15.656Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:13:15.657Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745863949720","timestamp":"2025-04-28T18:13:15.708Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:13:15.708Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745863949720"]},"status":404,"timestamp":"2025-04-28T18:13:15.708Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:13:15.709Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745863949720?numbers[]=5511999999999","timestamp":"2025-04-28T18:13:15.762Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:13:15.763Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745863949720?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T18:13:15.763Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:13:15.763Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745863949720","timestamp":"2025-04-28T18:13:15.812Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:13:15.812Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745863949720"]},"status":404,"timestamp":"2025-04-28T18:13:15.813Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:13:15.813Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745863949720","timestamp":"2025-04-28T18:13:15.913Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:13:15.913Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745863949720"]},"status":404,"timestamp":"2025-04-28T18:13:15.914Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:13:15.914Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745863949720","timestamp":"2025-04-28T18:13:15.959Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:13:15.959Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745863949720"]},"status":404,"timestamp":"2025-04-28T18:13:15.960Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:13:15.960Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745863949720","timestamp":"2025-04-28T18:13:16.007Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:13:16.007Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745863949720"]},"status":404,"timestamp":"2025-04-28T18:13:16.008Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:13:16.008Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745864070244","timestamp":"2025-04-28T18:14:55.675Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:14:55.676Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:14:55.676Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745864070244","timestamp":"2025-04-28T18:14:55.866Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:14:55.866Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745864070244"]},"status":404,"timestamp":"2025-04-28T18:14:55.866Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:14:55.867Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745864070244","timestamp":"2025-04-28T18:14:55.921Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:14:55.921Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T18:14:55.922Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:14:55.922Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745864070244","timestamp":"2025-04-28T18:15:15.930Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:15:15.931Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:15:15.931Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745864070244","timestamp":"2025-04-28T18:15:16.096Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:15:16.096Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T18:15:16.097Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:15:16.097Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745864070244","timestamp":"2025-04-28T18:15:16.161Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:15:16.162Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T18:15:16.162Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:15:16.162Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745864070244","timestamp":"2025-04-28T18:15:16.223Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:15:16.224Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T18:15:16.224Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:15:16.224Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745864070244","timestamp":"2025-04-28T18:15:16.287Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:15:16.287Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745864070244"]},"status":404,"timestamp":"2025-04-28T18:15:16.288Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:15:16.288Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745864070244?numbers[]=5511999999999","timestamp":"2025-04-28T18:15:16.353Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:15:16.354Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745864070244?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T18:15:16.354Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:15:16.354Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745864070244","timestamp":"2025-04-28T18:15:16.412Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:15:16.413Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745864070244"]},"status":404,"timestamp":"2025-04-28T18:15:16.413Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:15:16.414Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745864070244","timestamp":"2025-04-28T18:15:16.559Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:15:16.559Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745864070244"]},"status":404,"timestamp":"2025-04-28T18:15:16.559Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:15:16.560Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745864070244","timestamp":"2025-04-28T18:15:16.609Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:15:16.610Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745864070244"]},"status":404,"timestamp":"2025-04-28T18:15:16.610Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:15:16.610Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745864070244","timestamp":"2025-04-28T18:15:16.658Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:15:16.659Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745864070244"]},"status":404,"timestamp":"2025-04-28T18:15:16.659Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:15:16.659Z"}
+{"level":"error","message":"API request failed: POST /message/text/test-1745864337720","timestamp":"2025-04-28T18:19:03.144Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.145Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/text/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.145Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:19:03.146Z"}
+{"level":"error","message":"API request failed: POST /message/image/test-1745864337720","timestamp":"2025-04-28T18:19:03.193Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.194Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/image/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.194Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:19:03.195Z"}
+{"level":"error","message":"API request failed: POST /message/sticker/test-1745864337720","timestamp":"2025-04-28T18:19:03.248Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.248Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sticker/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.248Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:19:03.248Z"}
+{"level":"error","message":"API request failed: POST /message/location/test-1745864337720","timestamp":"2025-04-28T18:19:03.298Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.299Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/location/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.299Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:19:03.299Z"}
+{"level":"error","message":"API request failed: POST /message/contact/test-1745864337720","timestamp":"2025-04-28T18:19:03.349Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.350Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/contact/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.350Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:19:03.350Z"}
+{"level":"error","message":"API request failed: POST /message/poll/test-1745864337720","timestamp":"2025-04-28T18:19:03.407Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.408Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/poll/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.408Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:19:03.408Z"}
+{"level":"error","message":"API request failed: POST /message/list/test-1745864337720","timestamp":"2025-04-28T18:19:03.451Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.452Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/list/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.452Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:19:03.453Z"}
+{"level":"error","message":"API request failed: POST /message/buttons/test-1745864337720","timestamp":"2025-04-28T18:19:03.501Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.501Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/buttons/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.502Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:19:03.502Z"}
+{"level":"error","message":"API request failed: GET /chat/checkNumber/test-1745864337720/5511999999999","timestamp":"2025-04-28T18:19:03.550Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.551Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/checkNumber/test-1745864337720/5511999999999"]},"status":404,"timestamp":"2025-04-28T18:19:03.551Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:19:03.552Z"}
+{"level":"error","message":"API request failed: GET /chat/chats/test-1745864337720","timestamp":"2025-04-28T18:19:03.595Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.595Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/chats/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.595Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:19:03.596Z"}
+{"level":"error","message":"API request failed: GET /instance/profile/test-1745864337720","timestamp":"2025-04-28T18:19:03.690Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.691Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/profile/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.691Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:19:03.691Z"}
+{"level":"error","message":"API request failed: PUT /instance/updateProfileName/test-1745864337720","timestamp":"2025-04-28T18:19:03.736Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.737Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /instance/updateProfileName/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.737Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:19:03.737Z"}
+{"level":"error","message":"API request failed: PUT /instance/updateProfileStatus/test-1745864337720","timestamp":"2025-04-28T18:19:03.781Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:19:03.782Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /instance/updateProfileStatus/test-1745864337720"]},"status":404,"timestamp":"2025-04-28T18:19:03.782Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:19:03.783Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745864466906","timestamp":"2025-04-28T18:21:32.381Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:21:32.382Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:21:32.382Z"}
+{"level":"error","message":"API request failed: POST /message/sendImage/test-1745864466906","timestamp":"2025-04-28T18:21:32.547Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:32.547Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendImage/test-1745864466906"]},"status":404,"timestamp":"2025-04-28T18:21:32.548Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com imagem!","timestamp":"2025-04-28T18:21:32.548Z"}
+{"level":"error","message":"API request failed: POST /message/sendSticker/test-1745864466906","timestamp":"2025-04-28T18:21:32.601Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:21:32.601Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["Owned media must be a url or base64"]},"status":400,"timestamp":"2025-04-28T18:21:32.602Z"}
+{"level":"error","message":"❌ Falha no envio de sticker!","timestamp":"2025-04-28T18:21:32.602Z"}
+{"level":"error","message":"API request failed: POST /message/sendLocation/test-1745864466906","timestamp":"2025-04-28T18:21:52.609Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:21:52.610Z"}
+{"level":"error","message":"❌ Falha no envio de localização!","timestamp":"2025-04-28T18:21:52.610Z"}
+{"level":"error","message":"API request failed: POST /message/sendContact/test-1745864466906","timestamp":"2025-04-28T18:21:52.792Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:21:52.792Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"contact\""]]},"status":400,"timestamp":"2025-04-28T18:21:52.792Z"}
+{"level":"error","message":"❌ Falha no envio de contato!","timestamp":"2025-04-28T18:21:52.793Z"}
+{"level":"error","message":"API request failed: POST /message/sendPoll/test-1745864466906","timestamp":"2025-04-28T18:21:52.844Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:21:52.845Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"name\"","instance requires property \"selectableCount\"","instance requires property \"values\""]]},"status":400,"timestamp":"2025-04-28T18:21:52.845Z"}
+{"level":"error","message":"❌ Falha no envio de enquete!","timestamp":"2025-04-28T18:21:52.845Z"}
+{"level":"error","message":"API request failed: POST /message/sendList/test-1745864466906","timestamp":"2025-04-28T18:21:52.931Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:21:52.932Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":[["instance requires property \"title\"","instance requires property \"footerText\"","instance requires property \"buttonText\"","instance requires property \"sections\""]]},"status":400,"timestamp":"2025-04-28T18:21:52.932Z"}
+{"level":"error","message":"❌ Falha no envio de lista!","timestamp":"2025-04-28T18:21:52.933Z"}
+{"level":"error","message":"API request failed: POST /message/sendButton/test-1745864466906","timestamp":"2025-04-28T18:21:52.999Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:52.999Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /message/sendButton/test-1745864466906"]},"status":404,"timestamp":"2025-04-28T18:21:53.000Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem com botões!","timestamp":"2025-04-28T18:21:53.000Z"}
+{"level":"error","message":"API request failed: GET /chat/whatsappNumbers/test-1745864466906?numbers[]=5511999999999","timestamp":"2025-04-28T18:21:53.049Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:53.049Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/whatsappNumbers/test-1745864466906?numbers[]=5511999999999"]},"status":404,"timestamp":"2025-04-28T18:21:53.049Z"}
+{"level":"error","message":"❌ Falha na verificação de número!","timestamp":"2025-04-28T18:21:53.050Z"}
+{"level":"error","message":"API request failed: GET /chat/find/test-1745864466906","timestamp":"2025-04-28T18:21:53.093Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:53.094Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/find/test-1745864466906"]},"status":404,"timestamp":"2025-04-28T18:21:53.094Z"}
+{"level":"error","message":"❌ Falha na busca de chats!","timestamp":"2025-04-28T18:21:53.095Z"}
+{"level":"error","message":"API request failed: GET /profile/getProfile/test-1745864466906","timestamp":"2025-04-28T18:21:53.191Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:53.191Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /profile/getProfile/test-1745864466906"]},"status":404,"timestamp":"2025-04-28T18:21:53.192Z"}
+{"level":"error","message":"❌ Falha na busca de perfil!","timestamp":"2025-04-28T18:21:53.192Z"}
+{"level":"error","message":"API request failed: POST /profile/updateProfileName/test-1745864466906","timestamp":"2025-04-28T18:21:53.234Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:53.235Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot POST /profile/updateProfileName/test-1745864466906"]},"status":404,"timestamp":"2025-04-28T18:21:53.235Z"}
+{"level":"error","message":"❌ Falha na atualização do nome do perfil!","timestamp":"2025-04-28T18:21:53.235Z"}
+{"level":"error","message":"API request failed: PUT /profile/updateProfileStatus/test-1745864466906","timestamp":"2025-04-28T18:21:53.282Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:21:53.283Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot PUT /profile/updateProfileStatus/test-1745864466906"]},"status":404,"timestamp":"2025-04-28T18:21:53.283Z"}
+{"level":"error","message":"❌ Falha na atualização do status do perfil!","timestamp":"2025-04-28T18:21:53.284Z"}
+{"level":"error","message":"API request failed: GET /instance/qrcode/test-1745864610419","timestamp":"2025-04-28T18:23:35.912Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:23:35.912Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/qrcode/test-1745864610419"]},"status":404,"timestamp":"2025-04-28T18:23:35.913Z"}
+{"level":"error","message":"❌ Falha ao obter QR code!","timestamp":"2025-04-28T18:23:35.913Z"}
+{"level":"error","message":"API request failed: POST /message/sendText/test-1745864610419","timestamp":"2025-04-28T18:23:55.983Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:23:55.983Z"}
+{"level":"error","message":"❌ Falha no envio de mensagem de texto!","timestamp":"2025-04-28T18:23:55.983Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745864610419","timestamp":"2025-04-28T18:23:56.148Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:23:56.148Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745864610419"]},"status":404,"timestamp":"2025-04-28T18:23:56.149Z"}
+{"level":"error","message":"API request failed: GET /chat/getWhatsAppContacts/test-1745864610419","timestamp":"2025-04-28T18:23:56.241Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:23:56.242Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/getWhatsAppContacts/test-1745864610419"]},"status":404,"timestamp":"2025-04-28T18:23:56.242Z"}
+{"level":"error","message":"API request failed: GET /chat/getAllGroups/test-1745864610419","timestamp":"2025-04-28T18:23:56.283Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:23:56.284Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /chat/getAllGroups/test-1745864610419"]},"status":404,"timestamp":"2025-04-28T18:23:56.284Z"}
+{"level":"error","message":"API request failed: GET /device/getHostDevice/test-1745864610419","timestamp":"2025-04-28T18:23:56.329Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:23:56.330Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /device/getHostDevice/test-1745864610419"]},"status":404,"timestamp":"2025-04-28T18:23:56.330Z"}
+{"level":"error","message":"API request failed: GET /instance/status","timestamp":"2025-04-28T18:25:47.371Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:25:47.372Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/status"]},"status":404,"timestamp":"2025-04-28T18:25:47.373Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745864741609","timestamp":"2025-04-28T18:25:47.423Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:25:47.424Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["The getParticipants needs to be informed in the query"]},"status":400,"timestamp":"2025-04-28T18:25:47.424Z"}
+{"level":"error","message":"API request failed: GET /contact/getContacts/test-1745864741609","timestamp":"2025-04-28T18:25:47.474Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:25:47.475Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/getContacts/test-1745864741609"]},"status":404,"timestamp":"2025-04-28T18:25:47.475Z"}
+{"level":"error","message":"API request failed: GET /instance/status","timestamp":"2025-04-28T18:26:59.924Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:26:59.924Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/status"]},"status":404,"timestamp":"2025-04-28T18:26:59.925Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745864813683","timestamp":"2025-04-28T18:26:59.974Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:26:59.974Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["The getParticipants needs to be informed in the query"]},"status":400,"timestamp":"2025-04-28T18:26:59.974Z"}
+{"level":"error","message":"API request failed: GET /contact/getContacts/test-1745864813683","timestamp":"2025-04-28T18:27:00.020Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:27:00.020Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/getContacts/test-1745864813683"]},"status":404,"timestamp":"2025-04-28T18:27:00.021Z"}
+{"level":"error","message":"API request failed: GET /instance/status","timestamp":"2025-04-28T18:30:54.359Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:30:54.359Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/status"]},"status":404,"timestamp":"2025-04-28T18:30:54.360Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745865048753","timestamp":"2025-04-28T18:30:54.404Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:30:54.404Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["The getParticipants needs to be informed in the query"]},"status":400,"timestamp":"2025-04-28T18:30:54.404Z"}
+{"level":"error","message":"API request failed: GET /contact/getContacts/test-1745865048753","timestamp":"2025-04-28T18:30:54.451Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:30:54.452Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/getContacts/test-1745865048753"]},"status":404,"timestamp":"2025-04-28T18:30:54.452Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:30:57.272Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:30:57.273Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:30:57.273Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:30:57.318Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:30:57.318Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:30:57.318Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:30:57.361Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:30:58.402Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:30:58.410Z"}
+{"level":"error","message":"API request failed: GET /instance/status","timestamp":"2025-04-28T18:31:56.649Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:31:56.649Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/status"]},"status":404,"timestamp":"2025-04-28T18:31:56.650Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745865111183","timestamp":"2025-04-28T18:31:56.695Z"}
+{"level":"error","message":"Status: 400","timestamp":"2025-04-28T18:31:56.695Z"}
+{"error":"Bad Request","level":"error","message":"Data:","response":{"message":["The getParticipants needs to be informed in the query"]},"status":400,"timestamp":"2025-04-28T18:31:56.695Z"}
+{"level":"error","message":"API request failed: GET /contact/getContacts/test-1745865111183","timestamp":"2025-04-28T18:31:56.744Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:31:56.744Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/getContacts/test-1745865111183"]},"status":404,"timestamp":"2025-04-28T18:31:56.745Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:31:59.503Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:31:59.503Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:31:59.503Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:31:59.546Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:31:59.547Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:31:59.547Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:31:59.589Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:32:00.663Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:32:00.671Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745865488226","timestamp":"2025-04-28T18:38:13.681Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:38:13.682Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745865488226"]},"status":404,"timestamp":"2025-04-28T18:38:13.682Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745865488226?getParticipants=true","timestamp":"2025-04-28T18:38:33.684Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:38:33.685Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745865488226","timestamp":"2025-04-28T18:38:33.863Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:38:33.863Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745865488226"]},"status":404,"timestamp":"2025-04-28T18:38:33.863Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:38:36.735Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:38:36.735Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:38:36.736Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:38:36.782Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:38:36.782Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:38:36.782Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:38:36.832Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:38:37.905Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:38:37.912Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745865699394","timestamp":"2025-04-28T18:41:44.827Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:41:44.827Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745865699394"]},"status":404,"timestamp":"2025-04-28T18:41:44.827Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745865699394?getParticipants=true","timestamp":"2025-04-28T18:42:04.833Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:42:04.833Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745865699394","timestamp":"2025-04-28T18:42:05.014Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:42:05.014Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745865699394"]},"status":404,"timestamp":"2025-04-28T18:42:05.014Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:42:07.682Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:42:07.683Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:42:07.683Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:42:07.729Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:42:07.729Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:42:07.729Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:42:07.782Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:42:08.849Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:42:08.856Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745865841983","timestamp":"2025-04-28T18:44:07.481Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:44:07.482Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745865841983"]},"status":404,"timestamp":"2025-04-28T18:44:07.483Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745865841983?getParticipants=true","timestamp":"2025-04-28T18:44:27.493Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:44:27.494Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745865841983","timestamp":"2025-04-28T18:44:27.659Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:44:27.659Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745865841983"]},"status":404,"timestamp":"2025-04-28T18:44:27.659Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:44:30.383Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:44:30.384Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:44:30.384Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:44:30.430Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:44:30.430Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:44:30.430Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:44:30.479Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:44:31.528Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:44:31.534Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:45:52.184Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:45:52.185Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:45:52.186Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:45:52.233Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:45:52.233Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:45:52.234Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:45:52.277Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:47:02.642Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:47:02.643Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:47:02.643Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:47:02.690Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:47:02.690Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/test-instance"]},"status":404,"timestamp":"2025-04-28T18:47:02.690Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:47:02.742Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745866191042","timestamp":"2025-04-28T18:49:56.531Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:49:56.531Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745866191042"]},"status":404,"timestamp":"2025-04-28T18:49:56.532Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745866191042?getParticipants=true","timestamp":"2025-04-28T18:50:16.535Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:50:16.535Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745866191042","timestamp":"2025-04-28T18:50:16.723Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:50:16.723Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745866191042"]},"status":404,"timestamp":"2025-04-28T18:50:16.723Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:50:19.562Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:50:19.562Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/webhooks/test-instance"]},"status":404,"timestamp":"2025-04-28T18:50:19.562Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:50:19.607Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:50:19.607Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/webhooks/test-instance"]},"status":404,"timestamp":"2025-04-28T18:50:19.607Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:50:19.661Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:50:20.680Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:50:20.688Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:53:11.878Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:53:11.879Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/webhooks/test-instance"]},"status":404,"timestamp":"2025-04-28T18:53:11.880Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:53:11.924Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:53:11.924Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/webhooks/test-instance"]},"status":404,"timestamp":"2025-04-28T18:53:11.925Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:53:11.970Z"}
+{"level":"error","message":"❌ Webhook test failed!","timestamp":"2025-04-28T18:53:57.059Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:53:57.059Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/webhooks/test-instance"]},"status":404,"timestamp":"2025-04-28T18:53:57.060Z"}
+{"level":"error","message":"❌ Connection update test failed!","timestamp":"2025-04-28T18:53:57.112Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:53:57.112Z"}
+{"error":"Not Found","level":"error","message":"Response:","response":{"message":["Cannot POST /webhook/webhooks/test-instance"]},"status":404,"timestamp":"2025-04-28T18:53:57.113Z"}
+{"level":"error","message":"❌ QR code update test failed!","timestamp":"2025-04-28T18:53:57.163Z"}
+{"level":"error","message":"Instance test-instance not found","timestamp":"2025-04-28T18:54:19.560Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745866481257","timestamp":"2025-04-28T18:54:46.776Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:54:46.777Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745866481257"]},"status":404,"timestamp":"2025-04-28T18:54:46.777Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745866481257?getParticipants=true","timestamp":"2025-04-28T18:55:06.790Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:55:06.790Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745866481257","timestamp":"2025-04-28T18:55:07.007Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:55:07.008Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745866481257"]},"status":404,"timestamp":"2025-04-28T18:55:07.008Z"}
+{"level":"error","message":"Instance test-instance not found","timestamp":"2025-04-28T18:55:09.758Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:55:10.806Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:55:10.812Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745866680009","timestamp":"2025-04-28T18:58:05.508Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:58:05.508Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745866680009"]},"status":404,"timestamp":"2025-04-28T18:58:05.509Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745866680009?getParticipants=true","timestamp":"2025-04-28T18:58:25.518Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T18:58:25.519Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745866680009","timestamp":"2025-04-28T18:58:25.704Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T18:58:25.704Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745866680009"]},"status":404,"timestamp":"2025-04-28T18:58:25.705Z"}
+{"level":"error","message":"Instance test-instance not found","timestamp":"2025-04-28T18:58:28.553Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T18:58:29.686Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T18:58:29.692Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745867656319","timestamp":"2025-04-28T19:14:21.830Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T19:14:21.831Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745867656319"]},"status":404,"timestamp":"2025-04-28T19:14:21.831Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745867656319?getParticipants=true","timestamp":"2025-04-28T19:14:41.837Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T19:14:41.837Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745867656319","timestamp":"2025-04-28T19:14:41.997Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T19:14:41.997Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745867656319"]},"status":404,"timestamp":"2025-04-28T19:14:41.997Z"}
+{"level":"error","message":"Instance test-instance not found","timestamp":"2025-04-28T19:14:44.881Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T19:14:45.973Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T19:14:45.980Z"}
+{"level":"error","message":"API request failed: GET /instance/info/test-1745870648067","timestamp":"2025-04-28T20:04:13.524Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T20:04:13.524Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /instance/info/test-1745870648067"]},"status":404,"timestamp":"2025-04-28T20:04:13.525Z"}
+{"level":"error","message":"API request failed: GET /group/fetchAllGroups/test-1745870648067?getParticipants=true","timestamp":"2025-04-28T20:04:33.530Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-28T20:04:33.531Z"}
+{"level":"error","message":"API request failed: GET /contact/get/test-1745870648067","timestamp":"2025-04-28T20:04:33.704Z"}
+{"level":"error","message":"Status: 404","timestamp":"2025-04-28T20:04:33.704Z"}
+{"error":"Not Found","level":"error","message":"Data:","response":{"message":["Cannot GET /contact/get/test-1745870648067"]},"status":404,"timestamp":"2025-04-28T20:04:33.705Z"}
+{"level":"error","message":"Instance test-instance not found","timestamp":"2025-04-28T20:04:36.507Z"}
+{"level":"error","message":"❌ Register test failed:","timestamp":"2025-04-28T20:04:37.534Z"}
+{"level":"error","message":"❌ Login test failed:","timestamp":"2025-04-28T20:04:37.540Z"}

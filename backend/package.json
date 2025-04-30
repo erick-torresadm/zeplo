@@ -4,12 +4,46 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx src/index.ts",
-    "build": "esbuild src/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
     "start": "NODE_ENV=production node dist/index.js",
-    "check": "tsc"
+    "check": "tsc --noEmit",
+    "migrate": "tsx src/database/migrate.ts",
+    "migrate:rollback": "tsx src/database/migrate.ts rollback",
+    "migrate:specific": "tsx scripts/run-specific-migration.ts",
+    "seed": "tsx src/database/seed.ts",
+    "setup:db": "npm run migrate && npm run seed",
+    "webhook": "tsx scripts/start-webhook-server.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test:api": "tsx scripts/test-api.ts",
+    "test:db": "tsx scripts/test-db-connection.ts",
+    "test:evolution": "tsx scripts/test-evolution-api.ts",
+    "test:evolution:features": "tsx scripts/test-evolution-api-features.ts",
+    "test:minio": "tsx scripts/test-minio-s3.ts",
+    "test:redis": "tsx scripts/test-redis.ts",
+    "test:webhook": "tsx scripts/test-webhook-server.ts",
+    "test:all": "tsx scripts/run-all-tests.ts",
+    "testar": "tsx scripts/run-all-tests.ts"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.test.ts"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/__tests__/setup.ts"
+    ]
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/s3-request-presigner": "^3.0.0",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
@@ -17,23 +51,41 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
+    "ioredis": "^5.6.1",
     "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.14.1",
-    "ws": "^8.18.0"
+    "pg": "^8.15.6",
+    "stripe": "^14.0.0",
+    "uuid": "^9.0.0",
+    "winston": "^3.11.0",
+    "ws": "^8.18.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/express-session": "^1.18.0",
+    "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.9",
+    "@types/knex": "^0.15.2",
+    "@types/multer": "^1.4.11",
     "@types/node": "20.16.11",
     "@types/passport": "^1.0.16",
     "@types/passport-local": "^1.0.38",
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.8",
     "@types/ws": "^8.5.13",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "esbuild": "^0.25.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
     "tsx": "^4.19.1",
     "typescript": "5.6.3"
   }
-} 
+}
